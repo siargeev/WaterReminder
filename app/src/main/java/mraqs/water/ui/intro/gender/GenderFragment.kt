@@ -1,13 +1,14 @@
 package mraqs.water.ui.intro.gender
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import mraqs.water.R
+import mraqs.water.databinding.IntroGenderFragmentBinding
 
 class GenderFragment : Fragment() {
 
@@ -16,17 +17,26 @@ class GenderFragment : Fragment() {
     }
 
     private lateinit var viewModel: GenderViewModel
+    private lateinit var binding: IntroGenderFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.gender_fragment, container, false)
+        return DataBindingUtil.inflate<IntroGenderFragmentBinding>(inflater, R.layout.intro_gender_fragment, container, false)
+            .apply {
+                binding = this
+            }.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(GenderViewModel::class.java)
-        // TODO: Use the ViewModel
+        setupBinding()
+    }
+
+    private fun setupBinding() {
+        binding.viewModel = viewModel
+        binding.executePendingBindings()
     }
 }
