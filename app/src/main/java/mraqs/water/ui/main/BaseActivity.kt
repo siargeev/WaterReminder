@@ -1,24 +1,24 @@
 package mraqs.water.ui.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.bottom_navigation_view.bottom_navigation_view
-import mraqs.water.ui.main.home.HomeActivity
 import mraqs.water.R
+import mraqs.water.ui.main.home.HomeActivity
 import mraqs.water.ui.main.settings.SettingsActivity
+import javax.inject.Inject
 
-abstract class BaseActivity(private val navItem: Int) : AppCompatActivity() {
-
-    private val TAG = "BaseActivity"
+open class BaseActivity @Inject constructor(private val navItem: Int) : DaggerAppCompatActivity() {
 
     fun setupBottomNavigation() {
 
         with(bottom_navigation_view) {
             menu.getItem(navItem).isChecked = true
-//            setTextVisibility(false)
             setIconVisibility(false)
+//            setTextVisibility(false)
 //            setIconSize(30f, 30f)
-            isItemHorizontalTranslationEnabled = false
+            enableItemShiftingMode(false)
+            enableShiftingMode(false)
             enableAnimation(false)
             for (i in 0 until menu.size()) {
                 setIconTintList(i, null)

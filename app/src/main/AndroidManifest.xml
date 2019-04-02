@@ -6,17 +6,15 @@
 	>
 
     <application
+	    android:name=".App"
 	    android:allowBackup="true"
 	    android:icon="@mipmap/ic_launcher"
 	    android:label="@string/app_name"
 	    android:roundIcon="@mipmap/ic_launcher_round"
 	    android:supportsRtl="true"
-	    android:name=".App"
 	    android:theme="@style/AppTheme"
 	    tools:ignore="GoogleAppIndexingWarning"
 	    >
-        <activity android:name=".ui.main.BaseActivity">
-        </activity>
         <activity android:name=".ui.main.settings.SettingsActivity">
         </activity>
         <activity android:name=".ui.main.home.HomeActivity">

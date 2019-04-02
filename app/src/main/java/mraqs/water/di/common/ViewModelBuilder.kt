@@ -1,4 +1,4 @@
-package mraqs.notification.di.common
+package mraqs.water.di.common
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds

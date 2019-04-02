@@ -4,14 +4,23 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import mraqs.water.App
+import mraqs.water.di.common.ViewModelBuilder
 import mraqs.water.di.module.AppModule
+import mraqs.water.di.module.BaseActivityModule
+import mraqs.water.di.module.HomeActivityModule
+import mraqs.water.di.module.SettingsActivityModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        AppModule::class
+        ViewModelBuilder::class,
+        AppModule::class,
+
+        BaseActivityModule::class,
+        HomeActivityModule::class,
+        SettingsActivityModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {
