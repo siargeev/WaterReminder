@@ -2,11 +2,9 @@ package mraqs.water
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
-
-import org.junit.Test
-import org.junit.runner.RunWith
-
+import org.junit.*
 import org.junit.Assert.*
+import org.junit.runner.*
 
 /**
  * Instrumented test, which will execute on an Android device.
