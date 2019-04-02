@@ -1,14 +1,13 @@
 package mraqs.water.ui.intro
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.View
 import com.github.paolorotolo.appintro.AppIntro
+import mraqs.water.R
 import mraqs.water.ui.intro.activity.ActivityFragment
 import mraqs.water.ui.intro.gender.GenderFragment
 import mraqs.water.ui.intro.weight.WeightFragment
-import mraqs.water.ui.main.home.HomeActivity
 import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.startActivity
 
 class IntroActivity : AppIntro() {
 
@@ -20,19 +19,22 @@ class IntroActivity : AppIntro() {
     private fun setupIntro() {
         addSlides()
         showSkipButton(false)
+        showBackButtonWithDone = false
         isProgressButtonEnabled = true
-        doneButton.backgroundColor = android.R.color.transparent
+        backButtonVisibilityWithDone = false
+        setDoneText("")
+        doneButton.visibility = View.GONE
+        setNextArrowColor(resources.getColor(R.color.transparent))
+        setSeparatorColor(resources.getColor(R.color.transparent))
+        setIndicatorColor(resources.getColor(R.color.red), resources.getColor(R.color.blue))
+        doneButton.backgroundColor = resources.getColor(R.color.transparent)
     }
 
     private fun addSlides() {
+        //todo add warning slide
 //        addSlide(WarningFragment.newInstance())
         addSlide(GenderFragment.newInstance())
         addSlide(WeightFragment.newInstance())
         addSlide(ActivityFragment.newInstance())
-    }
-
-    override fun onDonePressed(currentFragment: Fragment?) {
-        startActivity<HomeActivity>()
-        finish()
     }
 }

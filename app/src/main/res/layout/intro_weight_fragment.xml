@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<data>
 		<import type="android.view.View" />
 		<variable
@@ -7,20 +8,109 @@
 			type="mraqs.water.ui.intro.weight.WeightViewModel"
 			/>
 	</data>
+	
 <androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@color/white"
 	tools:context=".ui.intro.weight.WeightFragment"
 	>
+	
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:adjustViewBounds="true"
+		android:src="@drawable/background"
+		app:layout_constraintTop_toTopOf="parent"
+		/>
 
     <TextView
+	    android:id="@+id/labelWeight"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="16dp"
 	    android:gravity="center"
-	    android:text="Weight"
+	    android:text="@string/what_is_your_weight"
+	    android:textColor="@color/white"
+	    android:textSize="30sp"
+	    app:layout_constraintTop_toTopOf="parent"
 	    />
+	
+	<com.robinhood.ticker.TickerView
+		android:id="@+id/weightTicker"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:layout_marginTop="100dp"
+		android:gravity="center"
+		android:text="55"
+		android:textColor="@color/white"
+		android:textSize="60sp"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/labelWeight"
+		app:ticker_defaultCharacterList="number"
+		/>
+	
+	<TextView
+		android:id="@+id/btnPlus"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="20dp"
+		android:backgroundTint="@android:color/transparent"
+		android:gravity="center"
+		android:text="+"
+		android:textColor="@color/white"
+		android:textSize="60sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/weightTicker"
+		app:layout_constraintStart_toEndOf="@id/weightTicker"
+		app:layout_constraintTop_toTopOf="@id/weightTicker"
+		/>
+	
+	<TextView
+		android:id="@+id/btnMinus"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="20dp"
+		android:gravity="center"
+		android:text="-"
+		android:textColor="@color/white"
+		android:textSize="60sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/weightTicker"
+		app:layout_constraintEnd_toStartOf="@id/weightTicker"
+		app:layout_constraintTop_toTopOf="@id/weightTicker"
+		/>
+	
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="kilogram"
+		android:textColor="@color/white"
+		android:textSize="16sp"
+		app:layout_constraintEnd_toEndOf="@id/weightTicker"
+		app:layout_constraintStart_toStartOf="@id/weightTicker"
+		app:layout_constraintTop_toBottomOf="@id/weightTicker"
+		/>
+	
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btnNext"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="70dp"
+		android:text="Next"
+		android:textAllCaps="false"
+		android:textSize="18sp"
+		app:backgroundTint="@color/red"
+		app:cornerRadius="100dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		/>
+	
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
