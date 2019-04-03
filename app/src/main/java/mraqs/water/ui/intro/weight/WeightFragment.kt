@@ -39,10 +39,6 @@ class WeightFragment : Fragment(), OnNextClickListener {
         viewModel = ViewModelProviders.of(this).get(WeightViewModel::class.java)
         setupBinding()
 
-        viewModel.weight.observe(this, Observer {
-            weightTicker.setText(it.toString(), true)
-        })
-
         btnNext.setOnClickListener { onClickNext(activity as IntroActivity) }
     }
 

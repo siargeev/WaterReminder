@@ -44,7 +44,7 @@
 		android:layout_height="100dp"
 		android:layout_marginTop="100dp"
 		android:gravity="center"
-		android:text="55"
+		android:text="@{viewModel.weight.toString()}"
 		android:textColor="@color/white"
 		android:textSize="60sp"
 		android:textStyle="bold"

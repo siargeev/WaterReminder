@@ -1,20 +1,18 @@
 package mraqs.water.ui.intro.activity
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
-import mraqs.water.util.decrement
-import mraqs.water.util.increment
+import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 
 class ActivityViewModel : ViewModel() {
-    val time: MutableLiveData<Int> by lazy { MutableLiveData<Int>().apply { value = 2 } }
+    val time = ObservableField(2)
 
     fun onPlusClick() {
-        if (time.value!! < 12)
-            time.increment()
+        if (time.get()!! < 12)
+            time.set((time.get()!!) + 1)
     }
 
     fun onMinusClick() {
-        if (time.value!! > 0)
-            time.decrement()
+        if (time.get()!! > 0)
+            time.set((time.get()!!) - 1)
     }
 }

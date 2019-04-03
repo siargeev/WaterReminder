@@ -1,22 +1,20 @@
 package mraqs.water.ui.intro.weight
 
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import mraqs.water.util.decrement
-import mraqs.water.util.increment
 
 class WeightViewModel : ViewModel() {
 
-    val weight: MutableLiveData<Int> by lazy { MutableLiveData<Int>().apply { value = 55 } }
+    val weight = ObservableField(55)
 
     fun onPlusClick() {
-        if (weight.value!! < 140)
-            weight.increment()
+        if (weight.get()!! < 140)
+            weight.set((weight.get()!!) + 1)
     }
 
     fun onMinusClick() {
-        if (weight.value!! > 20)
-            weight.decrement()
+        if (weight.get()!! > 20)
+            weight.set((weight.get()!!) - 1)
     }
 }
 
