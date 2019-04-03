@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.intro_activity_fragment.btnNext
+import kotlinx.android.synthetic.main.intro_activity_fragment.timeTicker
 import mraqs.water.R
 import mraqs.water.databinding.IntroActivityFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
@@ -36,6 +38,12 @@ class ActivityFragment : Fragment(), OnNextClickListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
         setupBinding()
+
+
+        viewModel.time.observe(this, Observer {
+            timeTicker.setText(it.toString(), true)
+        })
+
         btnNext.setOnClickListener { onClickNext(activity as IntroActivity) }
     }
 
