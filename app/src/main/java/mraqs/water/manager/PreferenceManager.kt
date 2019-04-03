@@ -1,9 +1,8 @@
 package mraqs.water.manager
 
-import mraqs.notification.data.model.Gender
-import mraqs.notification.data.model.User
-import mraqs.notification.data.model.toGender
 import mraqs.water.data.model.Preference
+import mraqs.water.util.WaterAmount
+import mraqs.water.util.WaterAmount.Gender
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -69,20 +68,7 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
         return !prefs.contains(Preference.IS_FIRST_LAUNCH)
     }
 
-    fun saveUser(user: User) {
-        saveGender(user.gender)
-        saveWeight(user.weight)
-        saveActivityTime(user.activityTime)
-    }
-
-    fun loadUser(): User {
-        val gender = loadGender()
-        val weight = loadWeight()
-        val activityTime = loadActivityTime()
-        return User(gender, weight, activityTime)
-    }
-
-    private fun saveGender(gender: Gender) {
+    internal fun saveGender(gender: Gender) {
         prefs.put(Preference.USER_GENDER, gender.name)
     }
 
@@ -106,11 +92,11 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
         return prefs.getInt(Preference.USER_VOLUME)
     }
 
-    private fun loadWaterGoal(): Int {
+    internal fun loadWaterGoal(): Int {
         return prefs.getInt(Preference.USER_WATER_GOAL)
     }
 
-    private fun loadGender(): Gender {
+    internal fun loadGender(): Gender {
         return prefs.getString(Preference.USER_GENDER)!!.toGender()
     }
 
@@ -128,5 +114,13 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
 
     private fun loadProgress(): Int {
         return prefs.getInt(Preference.USER_PROGRESS)
+    }
+
+    fun String.toGender(): WaterAmount.Gender {
+        return when (this.toUpperCase()) {
+            "MALE" -> WaterAmount.Gender.MALE
+            "FEMALE" -> WaterAmount.Gender.FEMALE
+            else -> WaterAmount.Gender.MALE
+        }
     }
 }

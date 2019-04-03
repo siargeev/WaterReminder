@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import dagger.android.support.DaggerFragment
 import mraqs.water.R
 import mraqs.water.databinding.IntroActivityFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
@@ -16,14 +18,17 @@ import mraqs.water.ui.intro.activity.ActivityViewModel.ViewState
 import mraqs.water.ui.intro.activity.ActivityViewModel.ViewState.NextScreen
 import mraqs.water.ui.main.home.HomeActivity
 import org.jetbrains.anko.startActivity
+import javax.inject.Inject
 
-class ActivityFragment : Fragment(), OnNextClickListener {
+class ActivityFragment : DaggerFragment(), OnNextClickListener {
 
     companion object {
         fun newInstance() = ActivityFragment()
     }
 
-    private lateinit var viewModel: ActivityViewModel
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+    private val viewModel: ActivityViewModel by lazy { ViewModelProviders.of(this, factory).get(ActivityViewModel::class.java) }
     private lateinit var binding: IntroActivityFragmentBinding
 
     override fun onCreateView(
@@ -36,9 +41,11 @@ class ActivityFragment : Fragment(), OnNextClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
         setupBinding()
+        observeViewState()
+    }
 
+    private fun observeViewState() {
         viewModel.viewState.observe(this, Observer { updateViewState(it) })
     }
 

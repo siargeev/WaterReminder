@@ -5,6 +5,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import mraqs.water.App
 import mraqs.water.di.common.ViewModelBuilder
+import mraqs.water.di.module.ActivityViewModule
 import mraqs.water.di.module.AppModule
 import mraqs.water.di.module.BaseActivityModule
 import mraqs.water.di.module.HomeActivityModule
@@ -23,7 +24,8 @@ import javax.inject.Singleton
         HomeActivityModule::class,
         SettingsActivityModule::class,
 
-        WeightViewModule::class
+        WeightViewModule::class,
+        ActivityViewModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

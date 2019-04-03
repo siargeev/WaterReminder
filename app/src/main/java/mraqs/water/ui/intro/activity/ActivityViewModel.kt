@@ -44,6 +44,7 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
 
     private fun calculateDailyWaterAmount(): Int {
         val gender = Gender.MALE
+        prefsManager.saveGender(gender)
         val weight = prefsManager.loadWeight()
         val activityTime = prefsManager.loadActivityTime()
         return WaterAmount.calculateWaterAmount(gender, weight, activityTime)
