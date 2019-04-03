@@ -28,7 +28,6 @@ class WeightViewModel @Inject constructor(private val prefManager: PreferenceMan
     }
 
     fun onNextButtonClick() {
-        Log.d(TAG, "weight is ${weight.get()!!}")
         updateWeight(weight.get()!!)
         showNextScreen()
     }
