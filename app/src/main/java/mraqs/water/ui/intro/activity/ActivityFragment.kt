@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.intro_activity_fragment.btnNext
 import mraqs.water.R
 import mraqs.water.databinding.IntroActivityFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
+import mraqs.water.ui.intro.activity.ActivityViewModel.ViewState
+import mraqs.water.ui.intro.activity.ActivityViewModel.ViewState.NextScreen
 import mraqs.water.ui.main.home.HomeActivity
 import org.jetbrains.anko.startActivity
 
@@ -37,7 +39,13 @@ class ActivityFragment : Fragment(), OnNextClickListener {
         viewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
         setupBinding()
 
-        btnNext.setOnClickListener { onClickNext(activity as IntroActivity) }
+        viewModel.viewState.observe(this, Observer { updateViewState(it) })
+    }
+
+    private fun updateViewState(state: ViewState) {
+        when (state) {
+            is NextScreen -> onClickNext(activity as IntroActivity)
+        }
     }
 
     private fun setupBinding() {

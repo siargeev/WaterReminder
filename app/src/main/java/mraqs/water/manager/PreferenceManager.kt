@@ -100,7 +100,7 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
         prefs.put(Preference.USER_GENDER, gender.name)
     }
 
-    private fun saveWeight(weight: Int) {
+    internal fun saveWeight(weight: Int) {
         prefs.put(Preference.USER_WEIGHT, weight)
     }
 

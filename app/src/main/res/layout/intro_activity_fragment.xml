@@ -105,6 +105,7 @@
 		android:layout_marginBottom="70dp"
 		android:text="@string/btn_next"
 		android:textAllCaps="false"
+		android:onClick="@{() -> viewModel.onNextButtonClick()}"
 		android:textSize="18sp"
 		app:backgroundTint="@color/red"
 		app:cornerRadius="100dp"

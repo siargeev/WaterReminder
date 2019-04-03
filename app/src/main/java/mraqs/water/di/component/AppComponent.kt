@@ -9,6 +9,7 @@ import mraqs.water.di.module.AppModule
 import mraqs.water.di.module.BaseActivityModule
 import mraqs.water.di.module.HomeActivityModule
 import mraqs.water.di.module.SettingsActivityModule
+import mraqs.water.di.module.WeightViewModule
 import javax.inject.Singleton
 
 @Singleton
@@ -20,7 +21,9 @@ import javax.inject.Singleton
 
         BaseActivityModule::class,
         HomeActivityModule::class,
-        SettingsActivityModule::class
+        SettingsActivityModule::class,
+
+        WeightViewModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

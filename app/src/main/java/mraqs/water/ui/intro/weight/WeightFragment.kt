@@ -5,24 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.intro_weight_fragment.btnNext
-import kotlinx.android.synthetic.main.intro_weight_fragment.weightTicker
+import dagger.android.support.DaggerFragment
 import mraqs.water.R
 import mraqs.water.databinding.IntroWeightFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
+import mraqs.water.ui.intro.weight.WeightViewModel.ViewState
+import mraqs.water.ui.intro.weight.WeightViewModel.ViewState.NextScreen
+import javax.inject.Inject
 
-class WeightFragment : Fragment(), OnNextClickListener {
+class WeightFragment : DaggerFragment(), OnNextClickListener {
     companion object {
 
         fun newInstance() = WeightFragment()
         private const val TAG = "WeightFragment"
     }
 
-    private lateinit var viewModel: WeightViewModel
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+    private val viewModel: WeightViewModel by lazy { ViewModelProviders.of(this, factory).get(WeightViewModel::class.java) }
 
     private lateinit var binding: IntroWeightFragmentBinding
     override fun onCreateView(
@@ -36,10 +40,20 @@ class WeightFragment : Fragment(), OnNextClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(WeightViewModel::class.java)
         setupBinding()
+        observeViewState()
+    }
 
-        btnNext.setOnClickListener { onClickNext(activity as IntroActivity) }
+    private fun observeViewState() {
+        viewModel.viewState.observe(this, Observer {
+            updateViewState(it)
+        })
+    }
+
+    private fun updateViewState(state: ViewState) {
+        when (state) {
+            is NextScreen -> onClickNext(activity as IntroActivity)
+        }
     }
 
     private fun setupBinding() {

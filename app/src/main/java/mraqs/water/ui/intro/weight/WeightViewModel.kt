@@ -1,11 +1,21 @@
 package mraqs.water.ui.intro.weight
 
+import android.util.Log
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import mraqs.water.manager.PreferenceManager
+import javax.inject.Inject
 
-class WeightViewModel : ViewModel() {
+class WeightViewModel @Inject constructor(private val prefManager: PreferenceManager) : ViewModel() {
 
+    private val TAG = "WeightViewModel"
     val weight = ObservableField(55)
+    val viewState = MutableLiveData<ViewState>()
+
+    init {
+        prefManager.saveWeight(55)
+    }
 
     fun onPlusClick() {
         if (weight.get()!! < 140)
@@ -15,6 +25,24 @@ class WeightViewModel : ViewModel() {
     fun onMinusClick() {
         if (weight.get()!! > 20)
             weight.set((weight.get()!!) - 1)
+    }
+
+    fun onNextButtonClick() {
+        Log.d(TAG, "weight is ${weight.get()!!}")
+        updateWeight(weight.get()!!)
+        showNextScreen()
+    }
+
+    private fun updateWeight(newWeight: Int) {
+        prefManager.saveWeight(newWeight)
+    }
+
+    fun showNextScreen() {
+        viewState.postValue(ViewState.NextScreen)
+    }
+
+    sealed class ViewState {
+        object NextScreen : ViewState()
     }
 }
 

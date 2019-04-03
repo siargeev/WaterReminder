@@ -17,7 +17,6 @@ class IntroActivity : AppIntro() {
 
     private fun setupIntro() {
         setSwipeLock(true)
-        setGoBackLock(true)
         setNextPageSwipeLock(true)
         showSkipButton(false)
         showSeparator(false)
@@ -33,7 +32,7 @@ class IntroActivity : AppIntro() {
     }
 
     private fun addSlides() {
-        //todo add warning slide
+        //todo add slides
 //        addSlide(WarningFragment.newInstance())
 //        addSlide(GenderFragment.newInstance())
         addSlide(WeightFragment.newInstance())
