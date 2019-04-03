@@ -1,6 +1,7 @@
 package mraqs.water.ui.main
 
 import android.content.Intent
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.bottom_navigation_view.bottom_navigation_view
 import mraqs.water.R
@@ -14,11 +15,10 @@ open class BaseActivity @Inject constructor(private val navItem: Int) : DaggerAp
 
         with(bottom_navigation_view) {
             menu.getItem(navItem).isChecked = true
-            setIconVisibility(false)
-//            setTextVisibility(false)
-//            setIconSize(30f, 30f)
-            enableItemShiftingMode(false)
-            enableShiftingMode(false)
+            setIconSize(30f, 30f)
+            setTextVisibility(false)
+            isItemHorizontalTranslationEnabled = false
+            labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
             enableAnimation(false)
             for (i in 0 until menu.size()) {
                 setIconTintList(i, null)

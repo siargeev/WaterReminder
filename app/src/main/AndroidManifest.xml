@@ -13,6 +13,8 @@
 	    android:roundIcon="@mipmap/ic_launcher_round"
 	    android:supportsRtl="true"
 	    android:theme="@style/AppTheme"
+	    android:largeHeap="true"
+	    android:hardwareAccelerated="true"
 	    tools:ignore="GoogleAppIndexingWarning"
 	    >
         <activity
@@ -25,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.settings.SettingsActivity" />
-        <activity android:name=".ui.main.home.HomeActivity" />
+        <activity android:name=".ui.main.settings.SettingsActivity" android:theme="@style/OnlyStatusBar"/>
+        <activity android:name=".ui.main.home.HomeActivity" android:theme="@style/OnlyStatusBar"/>
     </application>
 
 </manifest>

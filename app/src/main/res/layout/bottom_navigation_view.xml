@@ -7,7 +7,7 @@
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 	    android:id="@+id/bottom_navigation_view"
 	    android:layout_width="match_parent"
-	    android:layout_height="50dp"
+	    android:layout_height="64dp"
 	    android:background="@color/whitish"
 	    android:elevation="10dp"
 	    app:layout_constraintBottom_toBottomOf="parent"
