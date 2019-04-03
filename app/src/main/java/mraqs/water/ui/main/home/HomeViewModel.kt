@@ -1,6 +1,5 @@
 package mraqs.water.ui.main.home
 
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -38,7 +37,8 @@ class HomeViewModel @Inject constructor(private val prefManager: PreferenceManag
     }
 
     private fun updateProgress() {
-        Log.d(TAG, "updateProgress: ${(progress.get()!!) + volume.value!!}")
-        progress.set((progress.get()!!) + volume.value!!)
+        val newProgress = (progress.get()!!) + volume.value!!
+        progress.set(newProgress)
+        prefManager.saveProgress(newProgress)
     }
 }

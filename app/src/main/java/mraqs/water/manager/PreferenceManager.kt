@@ -113,7 +113,7 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
     }
 
     internal fun loadProgress(): Int {
-        return prefs.getInt(Preference.USER_PROGRESS)
+        return prefs.getInt(Preference.USER_PROGRESS, 0)
     }
 
     fun String.toGender(): WaterAmount.Gender {
