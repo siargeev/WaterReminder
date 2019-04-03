@@ -1,10 +1,10 @@
 package mraqs.water.ui.main.home
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import mraqs.water.R
 import mraqs.water.databinding.ActivityHomeBinding
 import mraqs.water.ui.main.BaseActivity
 import javax.inject.Inject
@@ -22,10 +22,15 @@ class HomeActivity : BaseActivity(0) {
         super.onCreate(savedInstanceState)
         setupBinding()
         setupBottomNavigation()
+        setupStatusBar()
+    }
+
+    private fun setupStatusBar() {
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
     private fun setupBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding = DataBindingUtil.setContentView(this, mraqs.water.R.layout.activity_home)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()

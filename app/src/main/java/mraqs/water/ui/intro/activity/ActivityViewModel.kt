@@ -49,7 +49,7 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
     private fun tempMockGenderAndProgress() {
         prefsManager.saveGender(MALE)
         prefsManager.saveProgress(0)
-        prefsManager.saveVolume(300)
+        prefsManager.saveVolume(200)
     }
 
     private fun calculateDailyWaterAmount(): Int {
