@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import mraqs.water.manager.PreferenceManager
 import mraqs.water.util.WaterAmount
 import mraqs.water.util.WaterAmount.Gender
+import mraqs.water.util.WaterAmount.Gender.MALE
 import javax.inject.Inject
 
 class ActivityViewModel @Inject constructor(private val prefsManager: PreferenceManager) : ViewModel() {
@@ -30,6 +31,8 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
     fun onNextButtonClick() {
         updateActivityTime(time.get()!!)
         updateDailyWaterAmount()
+        //TODO change
+        tempMockGenderAndProgress()
         showNextScreen()
     }
 
@@ -42,9 +45,16 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
         prefsManager.saveGoal(dailyGoal)
     }
 
+    //TODO change
+    private fun tempMockGenderAndProgress() {
+        prefsManager.saveGender(MALE)
+        prefsManager.saveProgress(0)
+        prefsManager.saveVolume(300)
+    }
+
     private fun calculateDailyWaterAmount(): Int {
+        //TODO change
         val gender = Gender.MALE
-        prefsManager.saveGender(gender)
         val weight = prefsManager.loadWeight()
         val activityTime = prefsManager.loadActivityTime()
         return WaterAmount.calculateWaterAmount(gender, weight, activityTime)

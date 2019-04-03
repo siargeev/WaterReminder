@@ -37,12 +37,12 @@
 			app:layout_constraintTop_toTopOf="parent"
 			/>
 		
-		<TextView
+		<com.robinhood.ticker.TickerView
 			android:id="@+id/waterProgress"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:gravity="center"
-			android:text="2000 ml"
+			android:text="@{viewModel.progress + ` ` + @string/ml}"
 			android:textColor="@color/white"
 			android:textSize="40sp"
 			android:textStyle="bold"
@@ -51,12 +51,14 @@
 			app:layout_constraintStart_toStartOf="@id/ivIntersect"
 			app:layout_constraintTop_toTopOf="@id/ivIntersect"
 			app:layout_constraintVertical_bias="0.3"
+			app:ticker_defaultCharacterList="number"
 			/>
+		
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:gravity="center"
-			android:text="of 3000 ml"
+			android:text="@{@string/of + ` ` + viewModel.dailyGoal  + ` ` + @string/ml}"
 			android:textColor="@color/white"
 			android:textSize="30sp"
 			android:textStyle="bold"
@@ -67,14 +69,15 @@
 			/>
 		
 		<FrameLayout
+			android:id="@+id/btnDrink"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="80dp"
 			android:background="?selectableItemBackgroundBorderless"
 			android:clickable="true"
 			android:elevation="20dp"
-			android:id="@+id/btnDrink"
 			android:focusable="true"
+			android:onClick="@{() -> viewModel.onDrinkClick()}"
 			android:translationZ="20dp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"

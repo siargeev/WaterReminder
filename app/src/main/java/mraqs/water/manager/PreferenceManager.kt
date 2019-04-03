@@ -84,11 +84,11 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
         prefs.put(Preference.USER_WATER_GOAL, waterAmount)
     }
 
-    private fun saveVolume(volume: Int) {
+    internal fun saveVolume(volume: Int) {
         prefs.put(Preference.USER_VOLUME, volume)
     }
 
-    private fun loadVolume(): Int {
+    internal fun loadVolume(): Int {
         return prefs.getInt(Preference.USER_VOLUME)
     }
 
@@ -108,11 +108,11 @@ class PreferenceManager @Inject constructor(private var prefs: Preference) {
         return prefs.getInt(Preference.USER_ACTIVITY_TIME)
     }
 
-    private fun saveProgress(progress: Int) {
+    internal fun saveProgress(progress: Int) {
         prefs.put(Preference.USER_PROGRESS, progress)
     }
 
-    private fun loadProgress(): Int {
+    internal fun loadProgress(): Int {
         return prefs.getInt(Preference.USER_PROGRESS)
     }
 
