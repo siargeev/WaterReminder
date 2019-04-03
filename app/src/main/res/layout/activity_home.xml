@@ -16,16 +16,95 @@
 		android:layout_height="match_parent"
 		tools:context=".ui.main.home.HomeActivity"
 		>
+		
 
-    <TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="Home"
-	    app:layout_constraintBottom_toBottomOf="parent"
-	    app:layout_constraintLeft_toLeftOf="parent"
-	    app:layout_constraintRight_toRightOf="parent"
-	    app:layout_constraintTop_toTopOf="parent"
-	    />
+		<ImageView
+			android:id="@+id/ivRectangle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:adjustViewBounds="true"
+			android:src="@drawable/rectangle"
+			app:layout_constraintTop_toTopOf="parent"
+			/>
+		
+		<ImageView
+			android:id="@+id/ivIntersect"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="70dp"
+			android:adjustViewBounds="true"
+			android:src="@drawable/intersect"
+			app:layout_constraintTop_toTopOf="parent"
+			/>
+		
+		<TextView
+			android:id="@+id/waterProgress"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:text="2000 ml"
+			android:textColor="@color/white"
+			android:textSize="40sp"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="@id/ivIntersect"
+			app:layout_constraintEnd_toEndOf="@id/ivIntersect"
+			app:layout_constraintStart_toStartOf="@id/ivIntersect"
+			app:layout_constraintTop_toTopOf="@id/ivIntersect"
+			app:layout_constraintVertical_bias="0.3"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:text="of 3000 ml"
+			android:textColor="@color/white"
+			android:textSize="30sp"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toEndOf="@id/waterProgress"
+			app:layout_constraintStart_toStartOf="@id/waterProgress"
+			app:layout_constraintTop_toBottomOf="@id/waterProgress"
+			app:layout_constraintVertical_bias="0.6"
+			/>
+		
+		<FrameLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="80dp"
+			android:background="?selectableItemBackgroundBorderless"
+			android:clickable="true"
+			android:elevation="20dp"
+			android:focusable="true"
+			android:translationZ="20dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			>
+			
+			<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:src="@drawable/ellipse"
+				/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginBottom="5dp"
+				android:src="@drawable/drop"
+				/>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
+				android:gravity="center"
+				android:text="300 ml"
+				android:textColor="@color/white"
+				android:textStyle="bold"
+				/>
+			
+		</FrameLayout>
 	
 	<include layout="@layout/bottom_navigation_view" />
 

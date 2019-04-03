@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import mraqs.water.R.layout
+import mraqs.water.R
 import mraqs.water.databinding.ActivityHomeBinding
 import mraqs.water.ui.main.BaseActivity
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class HomeActivity : BaseActivity(0) {
     }
 
     private fun setupBinding() {
-        binding = DataBindingUtil.setContentView(this, layout.activity_home)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()

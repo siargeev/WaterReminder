@@ -20,6 +20,9 @@ android {
         enabled = true
     }
     buildTypes {
+        debug {
+            crunchPngs false
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -77,5 +80,4 @@ dependencies {
     implementation 'cn.carbswang.android:NumberPickerView:1.1.0'
     implementation 'com.robinhood.ticker:ticker:2.0.1'
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.2'
-
 }
