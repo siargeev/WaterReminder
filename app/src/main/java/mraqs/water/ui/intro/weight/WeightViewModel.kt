@@ -1,6 +1,5 @@
 package mraqs.water.ui.intro.weight
 
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,7 +35,7 @@ class WeightViewModel @Inject constructor(private val prefManager: PreferenceMan
         prefManager.saveWeight(newWeight)
     }
 
-    fun showNextScreen() {
+    private fun showNextScreen() {
         viewState.postValue(ViewState.NextScreen)
     }
 

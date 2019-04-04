@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mraqs.water.manager.PreferenceManager
 import mraqs.water.util.WaterAmount
-import mraqs.water.util.WaterAmount.Gender
-import mraqs.water.util.WaterAmount.Gender.MALE
 import javax.inject.Inject
 
 class ActivityViewModel @Inject constructor(private val prefsManager: PreferenceManager) : ViewModel() {
@@ -31,8 +29,6 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
     fun onNextButtonClick() {
         updateActivityTime(time.get()!!)
         updateDailyWaterAmount()
-        //TODO change
-        tempMockGenderAndProgress()
         showNextScreen()
     }
 
@@ -42,26 +38,21 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
 
     private fun updateDailyWaterAmount() {
         val dailyGoal = calculateDailyWaterAmount()
+        val dailyProgress = 0
+        val dailyVolume = 300
         prefsManager.saveGoal(dailyGoal)
-    }
-
-    //TODO change
-    private fun tempMockGenderAndProgress() {
-        prefsManager.saveGender(MALE)
-        if (prefsManager.loadProgress() == 0)
-            prefsManager.saveProgress(0)
-        prefsManager.saveVolume(300)
+        prefsManager.saveProgress(dailyProgress)
+        prefsManager.saveVolume(dailyVolume)
     }
 
     private fun calculateDailyWaterAmount(): Int {
-        //TODO change
-        val gender = Gender.MALE
+        val gender = prefsManager.loadGender()
         val weight = prefsManager.loadWeight()
         val activityTime = prefsManager.loadActivityTime()
         return WaterAmount.calculateWaterAmount(gender, weight, activityTime)
     }
 
-    fun showNextScreen() {
+    private fun showNextScreen() {
         viewState.postValue(ViewState.NextScreen)
     }
 

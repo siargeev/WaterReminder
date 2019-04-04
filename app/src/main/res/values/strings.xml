@@ -6,5 +6,5 @@
 	<string name="btn_next">Next</string>
 	<string name="label_kilogram">kilogram</string>
     <string name="ml">ml</string>
-    <string name="of">of</string>
+    <string name="of">of</string><string name="what_is_your_gender">What is your gender?</string><string name="male">Male</string><string name="female">Female</string>
 </resources>

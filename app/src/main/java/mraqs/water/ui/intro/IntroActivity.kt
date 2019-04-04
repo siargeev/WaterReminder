@@ -5,6 +5,7 @@ import android.view.View
 import com.github.paolorotolo.appintro.AppIntro
 import mraqs.water.R
 import mraqs.water.ui.intro.activity.ActivityFragment
+import mraqs.water.ui.intro.gender.GenderFragment
 import mraqs.water.ui.intro.weight.WeightFragment
 import org.jetbrains.anko.backgroundColor
 
@@ -34,7 +35,7 @@ class IntroActivity : AppIntro() {
     private fun addSlides() {
         //todo add slides
 //        addSlide(WarningFragment.newInstance())
-//        addSlide(GenderFragment.newInstance())
+        addSlide(GenderFragment.newInstance())
         addSlide(WeightFragment.newInstance())
         addSlide(ActivityFragment.newInstance())
     }

@@ -22,7 +22,7 @@
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="80dp"
+			android:layout_height="?attr/actionBarSize"
 			android:background="@drawable/rectangle"
 			android:elevation="1dp"
 			android:fitsSystemWindows="true"
