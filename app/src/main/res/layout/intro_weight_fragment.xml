@@ -38,76 +38,41 @@
 	    app:layout_constraintTop_toTopOf="parent"
 	    />
 	
-	<com.robinhood.ticker.TickerView
-		android:id="@+id/weightTicker"
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		android:layout_marginTop="100dp"
-		android:gravity="center"
-		android:text="@{viewModel.weight.toString()}"
-		android:textColor="@color/white"
-		android:textSize="60sp"
-		android:textStyle="bold"
+	<cn.carbswang.android.numberpickerview.library.NumberPickerView
+		android:id="@+id/pickerWeight"
+		style="@style/Picker"
+		android:layout_width="85dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/labelWeight"
-		app:ticker_defaultCharacterList="number"
 		/>
-	
-	<TextView
-		android:id="@+id/btnPlus"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
-		android:backgroundTint="@android:color/transparent"
-		android:gravity="center"
-		android:onClick="@{() -> viewModel.onPlusClick()}"
-		android:text="+"
-		android:textColor="@color/white"
-		android:textSize="60sp"
-		android:textStyle="bold"
-		app:layout_constraintBottom_toBottomOf="@+id/weightTicker"
-		app:layout_constraintStart_toEndOf="@id/weightTicker"
-		app:layout_constraintTop_toTopOf="@id/weightTicker"
-		/>
-	
-	<TextView
-		android:id="@+id/btnMinus"
+
+	<cn.carbswang.android.numberpickerview.library.NumberPickerView
+		android:id="@+id/pickerWeightUnit"
+		style="@style/Picker"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="20dp"
-		android:gravity="center"
-		android:text="-"
-		android:onClick="@{() -> viewModel.onMinusClick()}"
-		android:textColor="@color/white"
-		android:textSize="60sp"
-		android:textStyle="bold"
-		app:layout_constraintBottom_toBottomOf="@+id/weightTicker"
-		app:layout_constraintEnd_toStartOf="@id/weightTicker"
-		app:layout_constraintTop_toTopOf="@id/weightTicker"
+		android:layout_marginStart="10dp"
+		app:layout_constraintBottom_toBottomOf="@id/pickerWeight"
+		app:layout_constraintStart_toEndOf="@id/pickerWeight"
+		app:layout_constraintTop_toTopOf="@id/pickerWeight"
+		app:npv_ShowCount="2"
 		/>
 	
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/label_kilogram"
-		android:textColor="@color/white"
-		android:textSize="16sp"
-		android:textStyle="bold"
-		app:layout_constraintEnd_toEndOf="@id/weightTicker"
-		app:layout_constraintStart_toStartOf="@id/weightTicker"
-		app:layout_constraintTop_toBottomOf="@id/weightTicker"
-		/>
+	
 	
 	<com.google.android.material.button.MaterialButton
 		android:id="@+id/btnNext"
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="70dp"
+		android:onClick="@{() -> viewModel.onNextButtonClick()}"
 		android:text="@string/btn_next"
 		android:textAllCaps="false"
 		android:textSize="18sp"
-		android:onClick="@{() -> viewModel.onNextButtonClick()}"
 		app:backgroundTint="@color/red"
 		app:cornerRadius="100dp"
 		app:layout_constraintBottom_toBottomOf="parent"

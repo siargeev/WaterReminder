@@ -18,5 +18,19 @@
 		<item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 	</style>
+	
+	<style name="Picker">
+        <item name="npv_ItemPaddingHorizontal">5dp</item>
+        <item name="npv_ItemPaddingVertical">5dp</item>
+        <item name="npv_RespondChangeOnDetached">false</item>
+        <item name="npv_ShowDivider">false</item>
+        <item name="npv_ShowCount">5</item>
+        <item name="npv_TextColorNormal">@color/white</item>
+        <item name="npv_TextColorSelected">@color/white</item>
+        <item name="npv_TextSizeNormal">20sp</item>
+        <item name="npv_TextSizeSelected">40sp</item>
+        <item name="npv_WrapSelectorWheel">true</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
 
 </resources>

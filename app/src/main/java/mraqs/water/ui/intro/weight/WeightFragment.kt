@@ -9,12 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.intro_weight_fragment.pickerWeight
+import kotlinx.android.synthetic.main.intro_weight_fragment.pickerWeightUnit
 import mraqs.water.R
 import mraqs.water.databinding.IntroWeightFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
 import mraqs.water.ui.intro.weight.WeightViewModel.ViewState
 import mraqs.water.ui.intro.weight.WeightViewModel.ViewState.NextScreen
+import mraqs.water.util.toWeightUnit
 import javax.inject.Inject
 
 class WeightFragment : DaggerFragment(), OnNextClickListener {
@@ -42,6 +45,7 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
         super.onActivityCreated(savedInstanceState)
         setupBinding()
         observeViewState()
+        setupPickers()
     }
 
     private fun observeViewState() {
@@ -54,6 +58,24 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
         when (state) {
             is NextScreen -> onClickNext(activity as IntroActivity)
         }
+    }
+
+    private fun setupPickers() {
+        setupNumberPickers()
+        setupUnitPicker()
+    }
+
+    private fun setupNumberPickers() {
+        pickerWeight.refreshByNewDisplayedValues(viewModel.provideWeights())
+        pickerWeight.setOnValueChangedListener{_, _, weight -> viewModel.updateWeight(weight)}
+    }
+
+    private fun setupUnitPicker() {
+        pickerWeightUnit.refreshByNewDisplayedValues(viewModel.units)
+        pickerWeightUnit.setOnValueChangedListener { _, _, unit -> viewModel.updateUnit(unit.toWeightUnit()) }
+        viewModel.unit.observe(this, Observer {
+            pickerWeight.refreshByNewDisplayedValues(viewModel.provideWeights(it))
+        })
     }
 
     private fun setupBinding() {
