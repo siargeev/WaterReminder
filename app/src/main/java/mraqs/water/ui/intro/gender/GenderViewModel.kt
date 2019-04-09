@@ -2,7 +2,7 @@ package mraqs.water.ui.intro.gender
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import mraqs.water.manager.PreferenceManager
+import mraqs.water.manager.LivePreferenceManager
 import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.FemaleActive
 import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.MaleActive
 import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.NextScreen
@@ -11,7 +11,7 @@ import mraqs.water.util.WaterAmount.Gender.FEMALE
 import mraqs.water.util.WaterAmount.Gender.MALE
 import javax.inject.Inject
 
-class GenderViewModel @Inject constructor(private val prefManager: PreferenceManager) : ViewModel() {
+class GenderViewModel @Inject constructor(private val prefManager: LivePreferenceManager) : ViewModel() {
     val viewState = MutableLiveData<ViewState>()
     val gender = MutableLiveData<Gender>()
 

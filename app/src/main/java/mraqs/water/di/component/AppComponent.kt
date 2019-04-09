@@ -11,6 +11,8 @@ import mraqs.water.di.module.BaseActivityModule
 import mraqs.water.di.module.GenderViewModule
 import mraqs.water.di.module.HomeActivityModule
 import mraqs.water.di.module.SettingsActivityModule
+import mraqs.water.di.module.SplachActivityModule
+import mraqs.water.di.module.VolumeFragmentModule
 import mraqs.water.di.module.WeightViewModule
 import javax.inject.Singleton
 
@@ -21,13 +23,16 @@ import javax.inject.Singleton
         ViewModelBuilder::class,
         AppModule::class,
 
+        SplachActivityModule::class,
         BaseActivityModule::class,
         HomeActivityModule::class,
         SettingsActivityModule::class,
 
         GenderViewModule::class,
         WeightViewModule::class,
-        ActivityViewModule::class
+        ActivityViewModule::class,
+
+        VolumeFragmentModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

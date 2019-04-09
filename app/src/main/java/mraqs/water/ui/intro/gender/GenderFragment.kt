@@ -77,4 +77,6 @@ class GenderFragment : DaggerFragment(), OnNextClickListener {
         binding.viewModel = viewModel
         binding.executePendingBindings()
     }
+
+
 }

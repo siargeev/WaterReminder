@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import dagger.android.support.DaggerFragment
+import dagger.android.support.DaggerDialogFragment
+import kotlinx.android.synthetic.main.intro_activity_fragment.btnNext
 import mraqs.water.R
+import mraqs.water.R.string
 import mraqs.water.databinding.IntroActivityFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
@@ -20,10 +22,16 @@ import mraqs.water.ui.main.home.HomeActivity
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
-class ActivityFragment : DaggerFragment(), OnNextClickListener {
+class ActivityFragment : DaggerDialogFragment(), OnNextClickListener {
 
     companion object {
-        fun newInstance() = ActivityFragment()
+        fun newInstance(param: String?): ActivityFragment {
+            val fragment = ActivityFragment()
+            val args = Bundle()
+            args.putString("param", param)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     @Inject
@@ -42,7 +50,14 @@ class ActivityFragment : DaggerFragment(), OnNextClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupBinding()
+        setupScreen()
         observeViewState()
+    }
+
+    private fun setupScreen() {
+        if (arguments?.getString("param") != null) {
+            btnNext.text = getString(string.save_button)
+        }
     }
 
     private fun observeViewState() {
@@ -51,8 +66,15 @@ class ActivityFragment : DaggerFragment(), OnNextClickListener {
 
     private fun updateViewState(state: ViewState) {
         when (state) {
-            is NextScreen -> onClickNext(activity as IntroActivity)
+            is NextScreen -> showNextScreen()
         }
+    }
+
+    private fun showNextScreen() {
+        if (arguments?.getString("param") != null) {
+            dismiss()
+        } else
+            onClickNext(activity as IntroActivity)
     }
 
     private fun setupBinding() {
@@ -62,5 +84,20 @@ class ActivityFragment : DaggerFragment(), OnNextClickListener {
 
     override fun onClickNext(activity: IntroActivity) {
         activity.startActivity<HomeActivity>()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog = dialog
+        if (dialog != null) {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.MATCH_PARENT
+            dialog.window?.setLayout(width, height)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, mraqs.water.R.style.FullScreenDialogStyle)
     }
 }

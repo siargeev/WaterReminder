@@ -17,6 +17,7 @@
 	<style name="OnlyStatusBar" parent="AppTheme">
 		<item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
 	</style>
 	
 	<style name="Picker">
@@ -32,5 +33,14 @@
         <item name="npv_WrapSelectorWheel">true</item>
         <item name="android:background">@color/transparent</item>
     </style>
+	
+	<style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+		<item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+		<item name="android:windowBackground">@color/white</item>
+</style>
 
 </resources>

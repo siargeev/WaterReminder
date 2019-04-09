@@ -1,0 +1,83 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/layout"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:background="@color/blue"
+	android:padding="10dp"
+	android:theme="@style/Theme.AppCompat"
+	>
+	
+    <TextView
+	    android:id="@+id/text_message"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:gravity="center"
+	    android:text="It's time to drink water"
+	    android:textColor="#fff"
+	    android:textSize="26sp"
+	    android:textStyle="bold"
+	    ads:layout_constraintEnd_toEndOf="parent"
+	    app:layout_constraintStart_toStartOf="parent"
+	    app:layout_constraintTop_toTopOf="parent"
+	    />
+	
+	
+	<!--<com.appodeal.ads.native_ad.views.NativeAdViewAppWall-->
+	<!--android:id="@+id/nat"-->
+	<!--android:layout_width="wrap_content"-->
+	<!--android:layout_height="wrap_content"-->
+	<!--android:layout_below="@id/btn_later"-->
+	<!--/>-->
+	
+	<!--<TextView-->
+	<!--android:id="@+id/publisherAdView"-->
+	<!--android:layout_width="wrap_content"-->
+	<!--android:layout_height="wrap_content"-->
+	<!--ads:adSize="MEDIUM_RECTANGLE"-->
+	<!--ads:adUnitId="@string/admob_banner_id"-->
+	<!--app:layout_constraintEnd_toEndOf="parent"-->
+	<!--app:layout_constraintStart_toStartOf="parent"-->
+	<!--app:layout_constraintTop_toBottomOf="@id/text_message"-->
+	<!--/>-->
+	
+	<Button
+		android:id="@+id/btn_drink"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="20dp"
+		android:layout_marginStart="20dp"
+		android:backgroundTint="@color/white"
+		android:text="Drink"
+		android:textAllCaps="false"
+		android:textColor="@color/blue"
+		android:textSize="20sp"
+		app:cornerRadius="10dp"
+		app:layout_constraintEnd_toStartOf="@id/btn_later"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/text_message"
+		/>
+
+    <Button
+	    android:id="@+id/btn_later"
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/btn_drink"
+	    android:layout_marginEnd="20dp"
+	    android:layout_marginStart="20dp"
+	    android:backgroundTint="@color/white"
+	    android:text="Later"
+	    android:textAllCaps="false"
+	    android:textColor="@color/blue"
+	    android:textSize="20sp"
+	    app:cornerRadius="10dp"
+	    app:layout_constraintEnd_toEndOf="parent"
+	    app:layout_constraintStart_toEndOf="@id/btn_drink"
+	    app:layout_constraintTop_toBottomOf="@id/text_message"
+	    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

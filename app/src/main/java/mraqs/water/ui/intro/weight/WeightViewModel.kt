@@ -2,14 +2,14 @@ package mraqs.water.ui.intro.weight
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import mraqs.water.manager.PreferenceManager
+import mraqs.water.manager.LivePreferenceManager
 import mraqs.water.util.WeightUnit
 import mraqs.water.util.WeightUnit.KG
 import mraqs.water.util.WeightUnit.LBS
 import mraqs.water.util.toWeight
 import javax.inject.Inject
 
-class WeightViewModel @Inject constructor(private val prefManager: PreferenceManager) : ViewModel() {
+class WeightViewModel @Inject constructor(private val prefs: LivePreferenceManager) : ViewModel() {
 
     private val TAG = "WeightViewModel"
     val viewState = MutableLiveData<ViewState>()
@@ -22,7 +22,6 @@ class WeightViewModel @Inject constructor(private val prefManager: PreferenceMan
 
     init {
         unit.postValue(KG)
-        prefManager.saveWeight(55)
     }
 
     fun onNextButtonClick() {
@@ -31,7 +30,7 @@ class WeightViewModel @Inject constructor(private val prefManager: PreferenceMan
     }
 
     private fun saveWeight(newWeight: Int) {
-        prefManager.saveWeight(newWeight)
+        prefs.saveWeight(newWeight)
     }
 
     fun updateWeight(newWeight: Int) {

@@ -36,8 +36,8 @@ class IntroActivity : AppIntro() {
         //todo add slides
 //        addSlide(WarningFragment.newInstance())
         addSlide(GenderFragment.newInstance())
-        addSlide(WeightFragment.newInstance())
-        addSlide(ActivityFragment.newInstance())
+        addSlide(WeightFragment.newInstance(null))
+        addSlide(ActivityFragment.newInstance(null))
     }
 
     interface OnNextClickListener {

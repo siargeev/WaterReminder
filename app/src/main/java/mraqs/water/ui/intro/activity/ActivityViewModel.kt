@@ -3,17 +3,16 @@ package mraqs.water.ui.intro.activity
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import mraqs.water.manager.PreferenceManager
-import mraqs.water.util.WaterAmount
+import mraqs.water.manager.LivePreferenceManager
 import javax.inject.Inject
 
-class ActivityViewModel @Inject constructor(private val prefsManager: PreferenceManager) : ViewModel() {
+class ActivityViewModel @Inject constructor(private val prefs: LivePreferenceManager) : ViewModel() {
 
     val time = ObservableField(2)
     val viewState = MutableLiveData<ViewState>()
 
     init {
-        prefsManager.saveActivityTime(2)
+//        prefsManager.saveActivityTime(2)
     }
 
     fun onPlusClick() {
@@ -28,28 +27,11 @@ class ActivityViewModel @Inject constructor(private val prefsManager: Preference
 
     fun onNextButtonClick() {
         updateActivityTime(time.get()!!)
-        updateDailyWaterAmount()
         showNextScreen()
     }
 
     private fun updateActivityTime(newTime: Int) {
-        prefsManager.saveActivityTime(newTime)
-    }
-
-    private fun updateDailyWaterAmount() {
-        val dailyGoal = calculateDailyWaterAmount()
-        val dailyProgress = 0
-        val dailyVolume = 300
-        prefsManager.saveGoal(dailyGoal)
-        prefsManager.saveProgress(dailyProgress)
-        prefsManager.saveVolume(dailyVolume)
-    }
-
-    private fun calculateDailyWaterAmount(): Int {
-        val gender = prefsManager.loadGender()
-        val weight = prefsManager.loadWeight()
-        val activityTime = prefsManager.loadActivityTime()
-        return WaterAmount.calculateWaterAmount(gender, weight, activityTime)
+        prefs.saveActivityTime(newTime)
     }
 
     private fun showNextScreen() {

@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import dagger.android.support.DaggerFragment
+import dagger.android.support.DaggerDialogFragment
+import kotlinx.android.synthetic.main.intro_weight_fragment.btnNext
 import kotlinx.android.synthetic.main.intro_weight_fragment.pickerWeight
 import kotlinx.android.synthetic.main.intro_weight_fragment.pickerWeightUnit
-import mraqs.water.R
+import mraqs.water.R.string
 import mraqs.water.databinding.IntroWeightFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
@@ -20,10 +22,17 @@ import mraqs.water.ui.intro.weight.WeightViewModel.ViewState.NextScreen
 import mraqs.water.util.toWeightUnit
 import javax.inject.Inject
 
-class WeightFragment : DaggerFragment(), OnNextClickListener {
+class WeightFragment : DaggerDialogFragment(), OnNextClickListener {
     companion object {
 
-        fun newInstance() = WeightFragment()
+        fun newInstance(param: String?): WeightFragment {
+            val fragment = WeightFragment()
+            val args = Bundle()
+            args.putString("param", param)
+            fragment.arguments = args
+            return fragment
+        }
+
         private const val TAG = "WeightFragment"
     }
 
@@ -36,7 +45,7 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return DataBindingUtil.inflate<IntroWeightFragmentBinding>(inflater, R.layout.intro_weight_fragment, container, false)
+        return DataBindingUtil.inflate<IntroWeightFragmentBinding>(inflater, mraqs.water.R.layout.intro_weight_fragment, container, false)
             .apply { binding = this }
             .root
     }
@@ -44,8 +53,15 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupBinding()
+        setupScreen()
         observeViewState()
         setupPickers()
+    }
+
+    private fun setupScreen() {
+        if (arguments?.getString("param") != null) {
+            btnNext.text = getString(string.save_button)
+        }
     }
 
     private fun observeViewState() {
@@ -56,8 +72,15 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
 
     private fun updateViewState(state: ViewState) {
         when (state) {
-            is NextScreen -> onClickNext(activity as IntroActivity)
+            is NextScreen -> showNextScreen()
         }
+    }
+
+    private fun showNextScreen() {
+        if (arguments?.getString("param") != null) {
+            dismiss()
+        } else
+            onClickNext(activity as IntroActivity)
     }
 
     private fun setupPickers() {
@@ -67,7 +90,7 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
 
     private fun setupNumberPickers() {
         pickerWeight.refreshByNewDisplayedValues(viewModel.provideWeights())
-        pickerWeight.setOnValueChangedListener{_, _, weight -> viewModel.updateWeight(weight)}
+        pickerWeight.setOnValueChangedListener { _, _, weight -> viewModel.updateWeight(weight) }
     }
 
     private fun setupUnitPicker() {
@@ -85,5 +108,20 @@ class WeightFragment : DaggerFragment(), OnNextClickListener {
 
     override fun onClickNext(activity: IntroActivity) {
         activity.pager.goToNextSlide()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog = dialog
+        if (dialog != null) {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.MATCH_PARENT
+            dialog.window?.setLayout(width, height)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, mraqs.water.R.style.FullScreenDialogStyle)
     }
 }
