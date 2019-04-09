@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerDialogFragment
+import kotlinx.android.synthetic.main.volume_fragment.adView
 import kotlinx.android.synthetic.main.volume_fragment.cvBottle
 import kotlinx.android.synthetic.main.volume_fragment.cvCup
 import kotlinx.android.synthetic.main.volume_fragment.cvGlass
@@ -24,6 +25,7 @@ import mraqs.water.ui.volume.VolumeViewModel.UIState.OnGlassClick
 import mraqs.water.ui.volume.VolumeViewModel.UIState.OnSaveClick
 import mraqs.water.ui.volume.VolumeViewModel.UIState.OnSmallBottleClick
 import mraqs.water.ui.volume.VolumeViewModel.UIState.OnSmallGlassClick
+import mraqs.water.util.show
 import javax.inject.Inject
 
 class VolumeFragment : DaggerDialogFragment() {
@@ -49,9 +51,8 @@ class VolumeFragment : DaggerDialogFragment() {
         super.onActivityCreated(savedInstanceState)
         setupBinding()
         observeUIState()
+        adView.show()
     }
-
-
 
     private fun updateUIState(uiState: UIState) = when (uiState) {
         OnSaveClick -> dismiss()

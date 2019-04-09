@@ -1,4 +1,4 @@
-package mraqs.notification.notification.worker
+package mraqs.water.notification.worker
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

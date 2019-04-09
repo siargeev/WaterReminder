@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.activity_settings.adView
 import kotlinx.android.synthetic.main.activity_settings.toolbar
 import mraqs.water.R
 import mraqs.water.databinding.ActivitySettingsBinding
@@ -18,6 +19,7 @@ import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.UnitsChooser
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.VolumeChooser
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.WeightChooser
 import mraqs.water.ui.volume.VolumeFragment
+import mraqs.water.util.show
 import javax.inject.Inject
 
 class SettingsActivity : BaseActivity(1) {
@@ -34,6 +36,7 @@ class SettingsActivity : BaseActivity(1) {
         setupBottomNavigation()
         setupStatusBar()
         observeViewState()
+        adView.show()
     }
 
     private fun observeViewState() {

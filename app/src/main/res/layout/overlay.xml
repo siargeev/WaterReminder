@@ -33,16 +33,16 @@
 	<!--android:layout_below="@id/btn_later"-->
 	<!--/>-->
 	
-	<!--<TextView-->
-	<!--android:id="@+id/publisherAdView"-->
-	<!--android:layout_width="wrap_content"-->
-	<!--android:layout_height="wrap_content"-->
-	<!--ads:adSize="MEDIUM_RECTANGLE"-->
-	<!--ads:adUnitId="@string/admob_banner_id"-->
-	<!--app:layout_constraintEnd_toEndOf="parent"-->
-	<!--app:layout_constraintStart_toStartOf="parent"-->
-	<!--app:layout_constraintTop_toBottomOf="@id/text_message"-->
-	<!--/>-->
+	<com.google.android.gms.ads.AdView
+		android:id="@+id/publisherAdView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		ads:adSize="MEDIUM_RECTANGLE"
+		ads:adUnitId="@string/admob_banner_id"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/text_message"
+		/>
 	
 	<Button
 		android:id="@+id/btn_drink"
@@ -58,7 +58,7 @@
 		app:cornerRadius="10dp"
 		app:layout_constraintEnd_toStartOf="@id/btn_later"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/text_message"
+		app:layout_constraintTop_toBottomOf="@id/publisherAdView"
 		/>
 
     <Button
@@ -76,7 +76,7 @@
 	    app:cornerRadius="10dp"
 	    app:layout_constraintEnd_toEndOf="parent"
 	    app:layout_constraintStart_toEndOf="@id/btn_drink"
-	    app:layout_constraintTop_toBottomOf="@id/text_message"
+	    app:layout_constraintTop_toBottomOf="@id/publisherAdView"
 	    />
 
 

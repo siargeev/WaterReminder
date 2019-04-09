@@ -8,6 +8,7 @@ import mraqs.water.di.common.ViewModelBuilder
 import mraqs.water.di.module.ActivityViewModule
 import mraqs.water.di.module.AppModule
 import mraqs.water.di.module.BaseActivityModule
+import mraqs.water.di.module.CongratsFragmentModule
 import mraqs.water.di.module.GenderViewModule
 import mraqs.water.di.module.HomeActivityModule
 import mraqs.water.di.module.SettingsActivityModule
@@ -32,7 +33,8 @@ import javax.inject.Singleton
         WeightViewModule::class,
         ActivityViewModule::class,
 
-        VolumeFragmentModule::class
+        VolumeFragmentModule::class,
+        CongratsFragmentModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

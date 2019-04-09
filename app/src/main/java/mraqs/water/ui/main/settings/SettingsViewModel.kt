@@ -33,10 +33,10 @@ class SettingsViewModel @Inject constructor(
     fun onNotificationsChecked(enabled: Boolean) {
         prefs.enableNotifications(enabled)
         if (enabled) {
-//            reminderManager.startNotificationReminder()
-//            reminderManager.startOverlayReminder()
+            reminderManager.startNotificationReminder()
+            reminderManager.startOverlayReminder()
         } else {
-//            reminderManager.cancelReminders()
+            reminderManager.cancelReminders()
         }
     }
 

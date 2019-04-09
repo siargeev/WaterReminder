@@ -24,4 +24,7 @@
     <string name="gdpr_accept">Accept</string>
     <string name="gdpr_decline">Decline</string>
 	
+	<string name="congratulations_label">Congratulations!\nYou reached a daily water goal!</string>
+    <string name="ok_label">OK</string>
+	
 </resources>

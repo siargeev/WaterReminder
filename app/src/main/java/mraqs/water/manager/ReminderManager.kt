@@ -7,7 +7,7 @@ import androidx.work.ExistingPeriodicWorkPolicy.KEEP
 import androidx.work.ExistingPeriodicWorkPolicy.REPLACE
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
-import mraqs.notification.notification.worker.NotificationWorker
+import mraqs.water.notification.worker.NotificationWorker
 import mraqs.water.notification.worker.OverlayWorker
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.MINUTES
@@ -23,9 +23,9 @@ class ReminderManager @Inject constructor(private var applicationContext: Contex
     fun startNotificationReminder() {
         if (prefs.isNotificationReminderDisabled()) {
             prefs.enableNotificationReminder()
-            val reminderInterval = prefs.getReminderInterval()
+//            val reminderInterval = prefs.getReminderInterval()
             val notificationRequest = PeriodicWorkRequest
-                .Builder(NotificationWorker::class.java, reminderInterval, TimeUnit.MINUTES, reminderInterval - 1, MINUTES)
+                .Builder(NotificationWorker::class.java, 15, TimeUnit.MINUTES, 15 - 1, MINUTES)
                 .addTag(NOTIFICATION_WORK)
                 .build()
             WorkManager.getInstance().enqueueUniquePeriodicWork(NOTIFICATION_WORK, KEEP, notificationRequest)
@@ -36,20 +36,14 @@ class ReminderManager @Inject constructor(private var applicationContext: Contex
     fun startOverlayReminder() {
         if (prefs.isOverlayReminderDisabled()) {
             prefs.enableOverlayReminder()
-            val reminderInterval = prefs.getReminderInterval()
+//            val reminderInterval = prefs.getReminderInterval()
             val overlayRequest = PeriodicWorkRequest
-                .Builder(OverlayWorker::class.java, reminderInterval, TimeUnit.MINUTES, reminderInterval - 1, MINUTES)
+                .Builder(OverlayWorker::class.java, 15, TimeUnit.MINUTES, 15 - 1, MINUTES)
                 .addTag(OVERLAY_WORK)
                 .build()
             WorkManager.getInstance().enqueueUniquePeriodicWork(OVERLAY_WORK, KEEP, overlayRequest)
-            Log.d(TAG, "startOverlayReminder: ${WorkManager.getInstance().getWorkInfosByTag(OVERLAY_WORK).get()}")
+            Log.d(TAG, "startOverlay: ${WorkManager.getInstance().getWorkInfosByTag(OVERLAY_WORK).get()}")
         }
-    }
-
-    fun updateRemindersInterval(newInterval: Long) {
-        prefs.updateReminderInterval(newInterval)
-        updateNotificationReminderInterval(newInterval)
-        updateOverlayReminderInterval(newInterval)
     }
 
     private fun updateOverlayReminderInterval(newInterval: Long) {

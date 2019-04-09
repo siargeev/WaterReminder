@@ -29,6 +29,7 @@ class SplashViewModel @Inject constructor(private var netManager: NetManager, pr
 
     private fun initAdMob(context: Context) {
         MobileAds.initialize(context, context.getString(R.string.google_app_id))
+
     }
 
     private fun startThreads() {

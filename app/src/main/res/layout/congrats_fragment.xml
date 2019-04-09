@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<data>
+		<import type="android.view.View" />
+		<variable
+			name="viewModel"
+			type="mraqs.water.ui.congrats.CongratsViewModel"
+			/>
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/blue"
+		android:padding="16dp"
+		tools:context=".ui.main.congrats.CongratsFragment"
+		>
+		
+		<TextView
+			android:id="@+id/congratsLabel"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:text="@string/congratulations_label"
+			android:textColor="@color/white"
+			android:textSize="25sp"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			/>
+
+        <com.airbnb.lottie.LottieAnimationView
+	        android:id="@+id/lottieSalut"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintEnd_toEndOf="parent"
+	        app:layout_constraintStart_toStartOf="parent"
+	        app:layout_constraintTop_toTopOf="parent"
+	        app:lottie_autoPlay="true"
+	        app:lottie_fileName="salut.json"
+	        app:lottie_loop="false"
+	        />
+		
+		<com.google.android.gms.ads.AdView
+			xmlns:ads="http://schemas.android.com/apk/res-auto"
+			android:id="@+id/adView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			ads:adSize="MEDIUM_RECTANGLE"
+			ads:adUnitId="@string/admob_banner_id"
+			ads:layout_constraintBottom_toTopOf="@id/btnClose"
+			ads:layout_constraintEnd_toEndOf="parent"
+			ads:layout_constraintStart_toStartOf="parent"
+			ads:layout_constraintTop_toBottomOf="@id/congratsLabel"
+			/>
+		
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btnClose"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:text="@string/ok_label"
+			android:textColor="@color/blue"
+			android:textSize="20sp"
+			app:backgroundTint="@color/white"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			/>
+		
+		
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+	
+</layout>

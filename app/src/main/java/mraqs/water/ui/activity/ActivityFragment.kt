@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerDialogFragment
+import kotlinx.android.synthetic.main.intro_activity_fragment.adView
 import kotlinx.android.synthetic.main.intro_activity_fragment.btnNext
 import mraqs.water.R
 import mraqs.water.R.string
@@ -19,6 +20,7 @@ import mraqs.water.ui.activity.ActivityViewModel.ViewState.NextScreen
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
 import mraqs.water.ui.main.home.HomeActivity
+import mraqs.water.util.show
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -52,6 +54,7 @@ class ActivityFragment : DaggerDialogFragment(), OnNextClickListener {
         setupBinding()
         setupScreen()
         observeViewState()
+        adView.show()
     }
 
     private fun setupScreen() {

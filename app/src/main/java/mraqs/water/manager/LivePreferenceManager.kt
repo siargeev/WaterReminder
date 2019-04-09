@@ -33,8 +33,22 @@ class LivePreferenceManager @Inject constructor(context: Context) {
     fun isFirstLaunch(): Boolean = !sharedPreferences.contains(IS_FIRST_LAUNCH)
     fun registerFirstLaunch() = edit { it.putBoolean(IS_FIRST_LAUNCH, true) }
 
-    fun isNotificationsEnabled() = sharedPreferences.contains(SETTING_NOTIFICATION_ENABLED)
+    fun isNotificationsEnabled() = sharedPreferences.getBoolean(SETTING_NOTIFICATION_ENABLED, true)
     fun enableNotifications(enabled: Boolean) = edit { it.putBoolean(SETTING_NOTIFICATION_ENABLED, enabled) }
+
+    fun enableNotificationReminder() = edit { it.putBoolean(SETTING_NOTIFICATION_REMINDER_ENABLED, true) }
+    fun disableNotificationReminder() = edit { it.remove(SETTING_NOTIFICATION_REMINDER_ENABLED) }
+    fun isNotificationReminderDisabled() = !sharedPreferences.contains(SETTING_NOTIFICATION_REMINDER_ENABLED)
+
+    fun enableOverlayReminder() = edit { it.putBoolean(SETTING_OVERLAY_REMINDER_ENABLED, true) }
+    fun disableOverlayReminder() = edit { it.remove(SETTING_OVERLAY_REMINDER_ENABLED) }
+    fun isOverlayReminderDisabled() = !sharedPreferences.contains(SETTING_OVERLAY_REMINDER_ENABLED)
+
+    fun getDrunkGlasses() = sharedPreferences.getInt(SETTING_DRUNK_GLASSES, 0)
+    fun addDrunkGlass() {
+        val num = getDrunkGlasses()
+        edit { it.putInt(SETTING_DRUNK_GLASSES, num + 1) }
+    }
 
     companion object {
         private const val TAG = "LivePreferenceManager"
@@ -43,7 +57,6 @@ class LivePreferenceManager @Inject constructor(context: Context) {
         const val SETTING_OVERLAY_REMINDER_ENABLED = "setting_overlay_reminder_enabled"
         const val SETTING_NOTIFICATION_REMINDER_ENABLED = "setting_notification_reminder_enabled"
         const val SETTING_DRUNK_GLASSES = "setting_drunk_glasses"
-        const val SETTING_REMINDER_INTERVAL = "setting_reminder_interval"
 
         const val USER_GENDER = "user_gender"
         const val USER_WEIGHT = "user_weight"
@@ -64,37 +77,5 @@ class LivePreferenceManager @Inject constructor(context: Context) {
 
     private fun edit(block: (SharedPreferences.Editor) -> Unit) {
         sharedPreferences.edit().apply { block(this) }.apply()
-    }
-
-    fun isNotificationReminderDisabled(): Boolean {
-        TODO("not implemented")
-    }
-
-    fun enableNotificationReminder() {
-        TODO("not implemented")
-    }
-
-    fun getReminderInterval(): Long {
-        TODO("not implemented")
-    }
-
-    fun isOverlayReminderDisabled(): Boolean {
-        TODO("not implemented")
-    }
-
-    fun enableOverlayReminder() {
-        TODO("not implemented")
-    }
-
-    fun updateReminderInterval(newInterval: Long) {
-        TODO("not implemented")
-    }
-
-    fun disableNotificationReminder() {
-        TODO("not implemented")
-    }
-
-    fun disableOverlayReminder() {
-        TODO("not implemented")
     }
 }

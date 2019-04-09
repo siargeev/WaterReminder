@@ -1,4 +1,4 @@
-package mraqs.notification.notification
+package mraqs.water.notification
 
 import android.app.job.JobParameters
 import android.app.job.JobService
@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.gms.ads.doubleclick.PublisherAdRequest
+import com.google.android.gms.ads.doubleclick.PublisherAdView
 import mraqs.water.R
 import mraqs.water.ui.main.home.HomeActivity
 
@@ -39,10 +41,9 @@ class Overlay : JobService() {
         val btnClose = view.findViewById<Button>(R.id.btn_later)
         val btnDrink = view.findViewById<Button>(R.id.btn_drink)
 
-        //todo configure Ad
-//        val mPublisherAdView = view.findViewById<PublisherAdView>(R.id.publisherAdView)
-//        val adRequest = PublisherAdRequest.Builder().build()
-//        mPublisherAdView.loadAd(adRequest)
+        val mPublisherAdView = view.findViewById<PublisherAdView>(R.id.publisherAdView)
+        val adRequest = PublisherAdRequest.Builder().build()
+        mPublisherAdView.loadAd(adRequest)
 
         btnClose.setOnClickListener {
             windowManager.removeView(view)

@@ -69,6 +69,19 @@
 			app:layout_constraintVertical_bias="0.6"
 			/>
 		
+		<com.google.android.gms.ads.AdView
+			xmlns:ads="http://schemas.android.com/apk/res-auto"
+			android:id="@+id/adView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			ads:adSize="LARGE_BANNER"
+			ads:adUnitId="@string/admob_banner_id"
+			ads:layout_constraintBottom_toTopOf="@id/btnDrink"
+			ads:layout_constraintEnd_toEndOf="parent"
+			ads:layout_constraintStart_toStartOf="parent"
+			ads:layout_constraintTop_toBottomOf="@id/ivIntersect"
+			/>
+		
 		<FrameLayout
 			android:id="@+id/btnDrink"
 			android:layout_width="wrap_content"

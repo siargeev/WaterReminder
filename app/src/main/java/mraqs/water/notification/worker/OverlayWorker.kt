@@ -6,7 +6,7 @@ import android.content.ComponentName
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import mraqs.notification.notification.Overlay
+import mraqs.water.notification.Overlay
 import mraqs.water.App
 import mraqs.water.manager.NetManager
 
