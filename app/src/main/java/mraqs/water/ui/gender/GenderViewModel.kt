@@ -1,11 +1,11 @@
-package mraqs.water.ui.intro.gender
+package mraqs.water.ui.gender
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mraqs.water.manager.LivePreferenceManager
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.FemaleActive
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.MaleActive
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.NextScreen
+import mraqs.water.ui.gender.GenderViewModel.ViewState.FemaleActive
+import mraqs.water.ui.gender.GenderViewModel.ViewState.MaleActive
+import mraqs.water.ui.gender.GenderViewModel.ViewState.NextScreen
 import mraqs.water.util.WaterAmount.Gender
 import mraqs.water.util.WaterAmount.Gender.FEMALE
 import mraqs.water.util.WaterAmount.Gender.MALE

@@ -1,4 +1,4 @@
-package mraqs.water.ui.intro.weight
+package mraqs.water.ui.weight
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

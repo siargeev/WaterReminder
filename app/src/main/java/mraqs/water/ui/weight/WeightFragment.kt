@@ -1,4 +1,4 @@
-package mraqs.water.ui.intro.activity
+package mraqs.water.ui.weight
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,41 +10,44 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerDialogFragment
-import kotlinx.android.synthetic.main.intro_activity_fragment.btnNext
-import mraqs.water.R
+import kotlinx.android.synthetic.main.intro_weight_fragment.btnNext
+import kotlinx.android.synthetic.main.intro_weight_fragment.pickerWeight
+import kotlinx.android.synthetic.main.intro_weight_fragment.pickerWeightUnit
 import mraqs.water.R.string
-import mraqs.water.databinding.IntroActivityFragmentBinding
+import mraqs.water.databinding.IntroWeightFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
-import mraqs.water.ui.intro.activity.ActivityViewModel.ViewState
-import mraqs.water.ui.intro.activity.ActivityViewModel.ViewState.NextScreen
-import mraqs.water.ui.main.home.HomeActivity
-import org.jetbrains.anko.startActivity
+import mraqs.water.ui.weight.WeightViewModel.ViewState
+import mraqs.water.ui.weight.WeightViewModel.ViewState.NextScreen
+import mraqs.water.util.toWeightUnit
 import javax.inject.Inject
 
-class ActivityFragment : DaggerDialogFragment(), OnNextClickListener {
-
+class WeightFragment : DaggerDialogFragment(), OnNextClickListener {
     companion object {
-        fun newInstance(param: String?): ActivityFragment {
-            val fragment = ActivityFragment()
+
+        fun newInstance(param: String?): WeightFragment {
+            val fragment = WeightFragment()
             val args = Bundle()
             args.putString("param", param)
             fragment.arguments = args
             return fragment
         }
+
+        private const val TAG = "WeightFragment"
     }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
-    private val viewModel: ActivityViewModel by lazy { ViewModelProviders.of(this, factory).get(ActivityViewModel::class.java) }
-    private lateinit var binding: IntroActivityFragmentBinding
+    private val viewModel: WeightViewModel by lazy { ViewModelProviders.of(this, factory).get(WeightViewModel::class.java) }
 
+    private lateinit var binding: IntroWeightFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return DataBindingUtil.inflate<IntroActivityFragmentBinding>(inflater, R.layout.intro_activity_fragment, container, false)
-            .apply { binding = this }.root
+        return DataBindingUtil.inflate<IntroWeightFragmentBinding>(inflater, mraqs.water.R.layout.intro_weight_fragment, container, false)
+            .apply { binding = this }
+            .root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -52,6 +55,7 @@ class ActivityFragment : DaggerDialogFragment(), OnNextClickListener {
         setupBinding()
         setupScreen()
         observeViewState()
+        setupPickers()
     }
 
     private fun setupScreen() {
@@ -61,7 +65,9 @@ class ActivityFragment : DaggerDialogFragment(), OnNextClickListener {
     }
 
     private fun observeViewState() {
-        viewModel.viewState.observe(this, Observer { updateViewState(it) })
+        viewModel.viewState.observe(this, Observer {
+            updateViewState(it)
+        })
     }
 
     private fun updateViewState(state: ViewState) {
@@ -77,13 +83,31 @@ class ActivityFragment : DaggerDialogFragment(), OnNextClickListener {
             onClickNext(activity as IntroActivity)
     }
 
+    private fun setupPickers() {
+        setupNumberPickers()
+        setupUnitPicker()
+    }
+
+    private fun setupNumberPickers() {
+        pickerWeight.refreshByNewDisplayedValues(viewModel.provideWeights())
+        pickerWeight.setOnValueChangedListener { _, _, weight -> viewModel.updateWeight(weight) }
+    }
+
+    private fun setupUnitPicker() {
+        pickerWeightUnit.refreshByNewDisplayedValues(viewModel.units)
+        pickerWeightUnit.setOnValueChangedListener { _, _, unit -> viewModel.updateUnit(unit.toWeightUnit()) }
+        viewModel.unit.observe(this, Observer {
+            pickerWeight.refreshByNewDisplayedValues(viewModel.provideWeights(it))
+        })
+    }
+
     private fun setupBinding() {
         binding.viewModel = viewModel
         binding.executePendingBindings()
     }
 
     override fun onClickNext(activity: IntroActivity) {
-        activity.startActivity<HomeActivity>()
+        activity.pager.goToNextSlide()
     }
 
     override fun onStart() {

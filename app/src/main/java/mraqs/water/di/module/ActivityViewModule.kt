@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import mraqs.water.di.common.ViewModelKey
-import mraqs.water.ui.intro.activity.ActivityFragment
-import mraqs.water.ui.intro.activity.ActivityViewModel
+import mraqs.water.ui.activity.ActivityFragment
+import mraqs.water.ui.activity.ActivityViewModel
 
 @Module
 internal abstract class ActivityViewModule {

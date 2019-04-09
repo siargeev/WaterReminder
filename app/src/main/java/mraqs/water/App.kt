@@ -6,6 +6,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.YandexMetricaConfig
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import mraqs.water.di.component.DaggerAppComponent
@@ -21,9 +23,9 @@ class App : DaggerApplication(), LifecycleObserver {
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
-//        val config = YandexMetricaConfig.newConfigBuilder(getString(R.string.yandex_metrica_id)).build()
-//        YandexMetrica.activate(applicationContext, config)
-//        YandexMetrica.enableActivityAutoTracking(this)
+        val config = YandexMetricaConfig.newConfigBuilder(getString(R.string.yandex_metrica_id)).build()
+        YandexMetrica.activate(applicationContext, config)
+        YandexMetrica.enableActivityAutoTracking(this)
     }
 
     @OnLifecycleEvent(ON_START)

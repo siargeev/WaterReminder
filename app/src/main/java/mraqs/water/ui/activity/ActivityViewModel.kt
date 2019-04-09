@@ -1,4 +1,4 @@
-package mraqs.water.ui.intro.activity
+package mraqs.water.ui.activity
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData

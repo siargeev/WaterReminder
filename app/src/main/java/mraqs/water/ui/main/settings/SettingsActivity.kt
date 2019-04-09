@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_settings.toolbar
 import mraqs.water.R
 import mraqs.water.databinding.ActivitySettingsBinding
-import mraqs.water.ui.intro.activity.ActivityFragment
-import mraqs.water.ui.intro.weight.WeightFragment
+import mraqs.water.ui.activity.ActivityFragment
+import mraqs.water.ui.weight.WeightFragment
 import mraqs.water.ui.main.BaseActivity
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.ActivityChooser

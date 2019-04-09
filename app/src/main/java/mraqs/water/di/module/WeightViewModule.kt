@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import mraqs.water.di.common.ViewModelKey
-import mraqs.water.ui.intro.weight.WeightFragment
-import mraqs.water.ui.intro.weight.WeightViewModel
+import mraqs.water.ui.weight.WeightFragment
+import mraqs.water.ui.weight.WeightViewModel
 
 @Module
 internal abstract class WeightViewModule {

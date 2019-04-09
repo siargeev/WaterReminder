@@ -1,4 +1,4 @@
-package mraqs.water.ui.intro.gender
+package mraqs.water.ui.gender
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,10 +15,10 @@ import mraqs.water.R
 import mraqs.water.databinding.IntroGenderFragmentBinding
 import mraqs.water.ui.intro.IntroActivity
 import mraqs.water.ui.intro.IntroActivity.OnNextClickListener
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.FemaleActive
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.MaleActive
-import mraqs.water.ui.intro.gender.GenderViewModel.ViewState.NextScreen
+import mraqs.water.ui.gender.GenderViewModel.ViewState
+import mraqs.water.ui.gender.GenderViewModel.ViewState.FemaleActive
+import mraqs.water.ui.gender.GenderViewModel.ViewState.MaleActive
+import mraqs.water.ui.gender.GenderViewModel.ViewState.NextScreen
 import javax.inject.Inject
 
 class GenderFragment : DaggerFragment(), OnNextClickListener {

@@ -5,7 +5,7 @@
 		<import type="android.view.View" />
 		<variable
 			name="viewModel"
-			type="mraqs.water.ui.intro.weight.WeightViewModel"
+			type="mraqs.water.ui.weight.WeightViewModel"
 			/>
 	</data>
 	
@@ -15,7 +15,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@color/white"
-	tools:context=".ui.intro.weight.WeightFragment"
+	tools:context=".ui.weight.WeightFragment"
 	>
 	
 	<ImageView

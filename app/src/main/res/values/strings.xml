@@ -14,6 +14,14 @@
 	
 	<string name="warning_tittle">Warning!</string>
 	<string name="body_warning_one">The application is a recommendation. The amount of water is calculated based on the average data. For more accurate information contact the doctor.</string>
-	<string name="body_warning_two">During the work of the application, there may be periods of increased battery consumption. However, there is no cause for concern, such periods are rare and usually short</string>
+	<string name="body_warning_two">During the work of the application, there may be periods of increased battery consumption. However, there is no cause for concern, such periods are rare and usually short</string><string name="loading">Loading</string>
 
+	<string name="gdpr_tittle">Personalize your ad experience!</string>
+    <string name="gdpr_body">App personalize your advertising experience using AdMob.\n\n
+        AdMob and its partners may collect and process personal data such as device identifiers, location data,
+        demographic and interest data to provide other advertising experience tailored to you.\n\n
+        By agreeing, you confirm that you are over the age of 16 and would like a personalized ad experience.\n\n</string>
+    <string name="gdpr_accept">Accept</string>
+    <string name="gdpr_decline">Decline</string>
+	
 </resources>

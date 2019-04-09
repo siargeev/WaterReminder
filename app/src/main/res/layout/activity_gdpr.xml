@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/blue"
+	android:padding="16dp"
+	>
+	
+	<TextView
+		android:id="@+id/gdpr_label"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:gravity="center"
+		android:text="@string/gdpr_tittle"
+		android:textColor="@color/white"
+		android:textSize="26sp"
+		android:textStyle="bold"
+		app:layout_constraintTop_toTopOf="parent"
+		/>
+	
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginTop="20dp"
+		android:text="@string/gdpr_body"
+		android:textColor="@color/white"
+		android:textSize="18sp"
+		app:layout_constraintBottom_toTopOf="@id/btnDeclineGdpr"
+		app:layout_constraintTop_toBottomOf="@id/gdpr_label"
+		/>
+	
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btnAcceptGdpr"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:elevation="10dp"
+		android:gravity="center"
+		android:padding="5dp"
+		android:text="@string/gdpr_accept"
+		android:textAllCaps="false"
+		android:textColor="#000"
+		android:textSize="26sp"
+		android:textStyle="bold"
+		app:cornerRadius="100dp"
+		app:backgroundTint="@color/white"
+		app:layout_constraintBottom_toBottomOf="parent"
+		/>
+	
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btnDeclineGdpr"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cornerRadius="100dp"
+		android:layout_margin="5dp"
+		android:padding="5dp"
+		android:text="@string/gdpr_decline"
+		android:textAllCaps="false"
+		android:textColor="@color/semitransparent"
+		android:textSize="26sp"
+		android:textStyle="bold"
+		app:backgroundTint="@color/transparent"
+		app:layout_constraintBottom_toTopOf="@id/btnAcceptGdpr"
+		/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

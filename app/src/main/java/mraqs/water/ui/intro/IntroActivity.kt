@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import com.github.paolorotolo.appintro.AppIntro
 import mraqs.water.R
-import mraqs.water.ui.intro.activity.ActivityFragment
-import mraqs.water.ui.intro.gender.GenderFragment
-import mraqs.water.ui.intro.weight.WeightFragment
+import mraqs.water.ui.activity.ActivityFragment
+import mraqs.water.ui.gender.GenderFragment
 import mraqs.water.ui.warning.WarningFragment
+import mraqs.water.ui.weight.WeightFragment
 import org.jetbrains.anko.backgroundColor
 
 class IntroActivity : AppIntro() {
@@ -42,5 +42,10 @@ class IntroActivity : AppIntro() {
 
     interface OnNextClickListener {
         fun onClickNext(activity: IntroActivity)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        finish()
     }
 }

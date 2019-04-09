@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import mraqs.water.di.common.ViewModelKey
-import mraqs.water.ui.intro.gender.GenderFragment
-import mraqs.water.ui.intro.gender.GenderViewModel
+import mraqs.water.ui.gender.GenderFragment
+import mraqs.water.ui.gender.GenderViewModel
 
 @Module
 internal abstract class GenderViewModule {
