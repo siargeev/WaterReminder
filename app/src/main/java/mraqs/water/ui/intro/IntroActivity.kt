@@ -7,6 +7,7 @@ import mraqs.water.R
 import mraqs.water.ui.intro.activity.ActivityFragment
 import mraqs.water.ui.intro.gender.GenderFragment
 import mraqs.water.ui.intro.weight.WeightFragment
+import mraqs.water.ui.warning.WarningFragment
 import org.jetbrains.anko.backgroundColor
 
 class IntroActivity : AppIntro() {
@@ -33,8 +34,7 @@ class IntroActivity : AppIntro() {
     }
 
     private fun addSlides() {
-        //todo add slides
-//        addSlide(WarningFragment.newInstance())
+        addSlide(WarningFragment.newInstance())
         addSlide(GenderFragment.newInstance())
         addSlide(WeightFragment.newInstance(null))
         addSlide(ActivityFragment.newInstance(null))

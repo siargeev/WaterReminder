@@ -11,4 +11,9 @@
 	<string name="male">Male</string>
 	<string name="female">Female</string>
 	<string name="save_button">Save</string>
+	
+	<string name="warning_tittle">Warning!</string>
+	<string name="body_warning_one">The application is a recommendation. The amount of water is calculated based on the average data. For more accurate information contact the doctor.</string>
+	<string name="body_warning_two">During the work of the application, there may be periods of increased battery consumption. However, there is no cause for concern, such periods are rare and usually short</string>
+
 </resources>
