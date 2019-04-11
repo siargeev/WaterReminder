@@ -1,25 +1,30 @@
 package mraqs.water.ui.main.settings
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_settings.adView
-import kotlinx.android.synthetic.main.activity_settings.toolbar
 import mraqs.water.R
+import mraqs.water.R.string
 import mraqs.water.databinding.ActivitySettingsBinding
 import mraqs.water.ui.activity.ActivityFragment
-import mraqs.water.ui.weight.WeightFragment
+import mraqs.water.ui.interval.IntervalFragment
 import mraqs.water.ui.main.BaseActivity
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.ActivityChooser
+import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.IntervalChooser
+import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.PrivacyPolicy
+import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.TermsOfUse
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.UnitsChooser
+import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.UpdateTimeUnit
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.VolumeChooser
 import mraqs.water.ui.main.settings.SettingsViewModel.ViewState.WeightChooser
 import mraqs.water.ui.volume.VolumeFragment
+import mraqs.water.ui.weight.WeightFragment
 import mraqs.water.util.show
+import org.jetbrains.anko.browse
 import javax.inject.Inject
 
 class SettingsActivity : BaseActivity(1) {
@@ -34,7 +39,6 @@ class SettingsActivity : BaseActivity(1) {
         super.onCreate(savedInstanceState)
         setupBinding()
         setupBottomNavigation()
-        setupStatusBar()
         observeViewState()
         adView.show()
     }
@@ -48,10 +52,27 @@ class SettingsActivity : BaseActivity(1) {
         is WeightChooser -> showWeightChooser()
         is ActivityChooser -> showActivityChooser()
         is VolumeChooser -> showVolumeChooser()
+        is PrivacyPolicy -> browse(getString(string.policy_url), true)
+        is TermsOfUse -> browse(getString(string.terms_url), true)
+        is IntervalChooser -> showIntervalChooser()
+        is UpdateTimeUnit -> updateTimeUnit(state.unit)
+    }
+
+    private fun updateTimeUnit(unit: String) {
+        val newUnit = when (unit) {
+            "min" -> getString(R.string.min)
+            "hour" -> getString(R.string.hour)
+            else -> getString(R.string.min)
+        }
+        viewModel.timeUnit.set(newUnit)
+    }
+
+    private fun showIntervalChooser() {
+        IntervalFragment.newInstance().show(supportFragmentManager, "")
     }
 
     private fun showUnitsChooser() {
-        VolumeFragment.newInstance().show(supportFragmentManager, "")
+        TODO()
     }
 
     private fun showWeightChooser() {
@@ -71,16 +92,5 @@ class SettingsActivity : BaseActivity(1) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()
-    }
-
-    private fun setupStatusBar() {
-        setSupportActionBar(toolbar)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        window.statusBarColor = resources.getColor(R.color.white)
-
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 }

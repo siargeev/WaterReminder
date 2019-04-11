@@ -1,12 +1,17 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:ads="http://schemas.android.com/apk/res-auto"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:backgroundTint="@color/blue"
+	ads:cardCornerRadius="20dp"
+	>
+<androidx.constraintlayout.widget.ConstraintLayout
 	android:id="@+id/layout"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:background="@color/blue"
-	android:padding="10dp"
+	android:padding="40dp"
 	android:theme="@style/Theme.AppCompat"
 	>
 	
@@ -16,7 +21,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_marginTop="10dp"
 	    android:gravity="center"
-	    android:text="It's time to drink water"
+	    android:text="@string/time_to_drink"
 	    android:textColor="#fff"
 	    android:textSize="26sp"
 	    android:textStyle="bold"
@@ -25,18 +30,11 @@
 	    app:layout_constraintTop_toTopOf="parent"
 	    />
 	
-	
-	<!--<com.appodeal.ads.native_ad.views.NativeAdViewAppWall-->
-	<!--android:id="@+id/nat"-->
-	<!--android:layout_width="wrap_content"-->
-	<!--android:layout_height="wrap_content"-->
-	<!--android:layout_below="@id/btn_later"-->
-	<!--/>-->
-	
-	<com.google.android.gms.ads.AdView
+	<com.google.android.gms.ads.doubleclick.PublisherAdView
 		android:id="@+id/publisherAdView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
 		ads:adSize="MEDIUM_RECTANGLE"
 		ads:adUnitId="@string/admob_banner_id"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -50,12 +48,13 @@
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="20dp"
 		android:layout_marginStart="20dp"
+		android:layout_marginTop="10dp"
 		android:backgroundTint="@color/white"
-		android:text="Drink"
+		android:text="@string/drink_action"
 		android:textAllCaps="false"
 		android:textColor="@color/blue"
 		android:textSize="20sp"
-		app:cornerRadius="10dp"
+		app:cornerRadius="50dp"
 		app:layout_constraintEnd_toStartOf="@id/btn_later"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/publisherAdView"
@@ -68,12 +67,13 @@
 	    android:layout_below="@id/btn_drink"
 	    android:layout_marginEnd="20dp"
 	    android:layout_marginStart="20dp"
+	    android:layout_marginTop="10dp"
 	    android:backgroundTint="@color/white"
-	    android:text="Later"
+	    android:text="@string/later_action"
 	    android:textAllCaps="false"
 	    android:textColor="@color/blue"
 	    android:textSize="20sp"
-	    app:cornerRadius="10dp"
+	    app:cornerRadius="50dp"
 	    app:layout_constraintEnd_toEndOf="parent"
 	    app:layout_constraintStart_toEndOf="@id/btn_drink"
 	    app:layout_constraintTop_toBottomOf="@id/publisherAdView"
@@ -81,3 +81,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.cardview.widget.CardView>

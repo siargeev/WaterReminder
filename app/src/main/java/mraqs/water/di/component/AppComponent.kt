@@ -9,11 +9,14 @@ import mraqs.water.di.module.ActivityViewModule
 import mraqs.water.di.module.AppModule
 import mraqs.water.di.module.BaseActivityModule
 import mraqs.water.di.module.CongratsFragmentModule
+import mraqs.water.di.module.GdprActivityModule
 import mraqs.water.di.module.GenderViewModule
 import mraqs.water.di.module.HomeActivityModule
+import mraqs.water.di.module.IntervalFragmentModule
 import mraqs.water.di.module.SettingsActivityModule
 import mraqs.water.di.module.SplachActivityModule
 import mraqs.water.di.module.VolumeFragmentModule
+import mraqs.water.di.module.WarningFragmentModule
 import mraqs.water.di.module.WeightViewModule
 import javax.inject.Singleton
 
@@ -25,16 +28,19 @@ import javax.inject.Singleton
         AppModule::class,
 
         SplachActivityModule::class,
+        GdprActivityModule::class,
         BaseActivityModule::class,
         HomeActivityModule::class,
         SettingsActivityModule::class,
 
+        WarningFragmentModule::class,
         GenderViewModule::class,
         WeightViewModule::class,
         ActivityViewModule::class,
 
         VolumeFragmentModule::class,
-        CongratsFragmentModule::class
+        CongratsFragmentModule::class,
+        IntervalFragmentModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

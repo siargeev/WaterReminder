@@ -11,10 +11,10 @@
 	<androidx.constraintlayout.widget.ConstraintLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:custom="http://schemas.android.com/apk/res-auto"
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:fitsSystemWindows="true"
 		tools:context=".ui.main.home.HomeActivity"
 		>
 		
@@ -67,6 +67,24 @@
 			app:layout_constraintStart_toStartOf="@id/waterProgress"
 			app:layout_constraintTop_toBottomOf="@id/waterProgress"
 			app:layout_constraintVertical_bias="0.6"
+			/>
+		
+		<com.github.lzyzsd.circleprogress.ArcProgress
+			android:id="@+id/arc_store"
+			android:layout_width="300dp"
+			android:layout_height="300dp"
+			app:layout_constraintBottom_toBottomOf="@id/ivIntersect"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="@id/ivRectangle"
+			custom:arc_bottom_text="@string/progress_label"
+			custom:arc_bottom_text_size="18dp"
+			custom:arc_stroke_width="28dp"
+			custom:arc_suffix_text_size="0dp"
+			custom:arc_text_color="#ffffff"
+			custom:arc_text_size="0dp"
+			custom:max="@{viewModel.goal}"
+			custom:progress="@{viewModel.progress}"
 			/>
 		
 		<com.google.android.gms.ads.AdView

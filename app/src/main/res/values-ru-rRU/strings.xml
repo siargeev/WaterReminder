@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Трекер питья воды</string>
+	<string name="what_is_your_weight">Какой у Вас вес?</string>
+	<string name="how_active_are_you">Сколько времени на спорт в день Вы тратите?</string>
+	<string name="hours_a_day">час. в день</string>
+	<string name="btn_next">Далее</string>
+	<string name="label_kilogram">килограмм</string>
+    <string name="ml">мл</string>
+    <string name="of">из</string>
+	<string name="what_is_your_gender">Ваш пол?</string>
+	<string name="male">Мужской</string>
+	<string name="female">Женский</string>
+	<string name="save_button">Сохранить</string>
+	
+	<string name="warning_tittle">Внимание!</string>
+	<string name="body_warning_one">
+		Приложение носит рекомендательный характер.
+		Количество воды рассчитывается на основе усредненных данных данных.
+		Для более точной информации проконсультируйтесь с врачом.
+	</string>
+	<string name="body_warning_two">
+		Во время работы приложения могут быть периоды повышенного расхода батареи.
+		Тем не менее, нет причин для беспокойства, такие периоды редкие и, как правило, короткие.
+	</string>
+	<string name="loading">Загрузка</string>
+
+	<string name="gdpr_tittle">Персонализируйте вашу рекламу!</string>
+    <string name="gdpr_body">
+	    Приложение персонализирует вашу рекламу с помощью AdMob.\n\n
+        AdMob и его партнеры могут собирать и обрабатывать личные данные, такие как идентификаторы устройств, данные о местонахождении,
+        демографические данные и данные по интересам для предоставления другого рекламного опыта, адаптированного для вас.\n\n
+        Соглашаясь, вы подтверждаете, что вы старше 16 лет и хотели бы получить персонализированную рекламу.\n\n
+    </string>
+    <string name="gdpr_accept">Принять</string>
+    <string name="gdpr_decline">Отклонить</string>
+	
+	<string name="congratulations_label">Поздравляем!\nВы достигли Вашей ежедневной цели!</string>
+    <string name="ok_label">OK</string>
+	<string name="privacy_policy">Политика конф-ти</string>
+	<string name="terms_of_use">Правила пользования</string>
+	<string name="permissions_required">Вы должны предоставить приложению необходимые разрешения</string>
+	<string name="nav_item_main">Главная</string>
+	<string name="nav_item_settings">Настройки</string>
+	
+	<string name="first_show_label">
+		На основании вашего пола, веса и времени занятия спортом, мы вычислили необходимое количество воды.
+		Помните, что приложение носит рекомендательный характер.
+		Более точную информацию вы можете получить у вашего доктора.
+	</string>
+	<string name="label_interval">Как часто показывать напоминания?</string>
+	
+	<string name="min">мин.</string>
+	<string name="hour">час.</string>
+	<string name="kg">кг</string>
+	
+	<string name="interval_label">Интервал</string>
+	<string name="settings_label">Настройки</string>
+	<string name="notifications_label">Уведомления</string>
+	<string name="units_label">Ед. измерения</string>
+	<string name="metric_system_label">Метр. система</string>
+	<string name="weight_label">Вес</string>
+	<string name="activity_label">Активность</string>
+	<string name="capacity_of_glass_label">Объем</string>
+	
+	<string name="time_to_drink">Время выпить воды!</string>
+	<string name="drink_action">Выпить</string>
+	<string name="later_action">Позже</string>
+	
+	<string name="small_glass">Маленький стакан</string>
+	<string name="_100_ml">100 мл</string>
+	<string name="cup">Чашка</string>
+	<string name="_250_ml">250 мл</string>
+	<string name="glass">Стакан</string>
+	<string name="_300_ml">300 мл</string>
+	<string name="small_bottle">Маленькая бутылка</string>
+	<string name="_500_ml">500 мл</string>
+	<string name="bottle">Бутылка</string>
+	<string name="_1000_ml">1000 мл</string>
+	<string name="progress_label">Прогресс</string>
+
+</resources>

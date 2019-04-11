@@ -50,6 +50,9 @@ class LivePreferenceManager @Inject constructor(context: Context) {
         edit { it.putInt(SETTING_DRUNK_GLASSES, num + 1) }
     }
 
+    fun loadReminderInterval() = prefs.getInt(SETTING_REMINDER_INTERVAL, 15)
+    fun updateReminderInterval(interval: Int) = edit { it.putInt(SETTING_REMINDER_INTERVAL, interval) }
+
     companion object {
         private const val TAG = "LivePreferenceManager"
         const val IS_FIRST_LAUNCH = "is_first_launch"
@@ -57,6 +60,7 @@ class LivePreferenceManager @Inject constructor(context: Context) {
         const val SETTING_OVERLAY_REMINDER_ENABLED = "setting_overlay_reminder_enabled"
         const val SETTING_NOTIFICATION_REMINDER_ENABLED = "setting_notification_reminder_enabled"
         const val SETTING_DRUNK_GLASSES = "setting_drunk_glasses"
+        const val SETTING_REMINDER_INTERVAL = "setting_reminder_interval"
 
         const val USER_GENDER = "user_gender"
         const val USER_WEIGHT = "user_weight"

@@ -29,7 +29,6 @@ class SplashViewModel @Inject constructor(private var netManager: NetManager, pr
 
     private fun initAdMob(context: Context) {
         MobileAds.initialize(context, context.getString(R.string.google_app_id))
-
     }
 
     private fun startThreads() {
@@ -49,9 +48,9 @@ class SplashViewModel @Inject constructor(private var netManager: NetManager, pr
 
     private fun showNextActivity(context: Context) {
         val intent: Intent = if (prefs.isFirstLaunch()) {
-            prefs.registerFirstLaunch()
             Intent(context, GdprActivity::class.java)
         } else {
+//            Intent(context, GdprActivity::class.java)
             Intent(context, HomeActivity::class.java)
         }
         context.startActivity(intent)

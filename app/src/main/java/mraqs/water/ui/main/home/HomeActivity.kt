@@ -1,15 +1,6 @@
 package mraqs.water.ui.main.home
 
-import android.annotation.SuppressLint
-import android.annotation.TargetApi
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
-import android.os.Build.VERSION_CODES
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
-import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,11 +11,11 @@ import kotlinx.android.synthetic.main.activity_home.adView
 import mraqs.water.R
 import mraqs.water.databinding.ActivityHomeBinding
 import mraqs.water.ui.congrats.CongratsFragment
+import mraqs.water.ui.firstinfo.FirstShowDialog
 import mraqs.water.ui.main.BaseActivity
 import mraqs.water.ui.main.home.HomeViewModel.UIState
 import mraqs.water.ui.main.home.HomeViewModel.UIState.Congratulations
-import mraqs.water.ui.main.home.HomeViewModel.UIState.RequestBatteryPermission
-import mraqs.water.ui.main.home.HomeViewModel.UIState.RequestOverlayPermission
+import mraqs.water.ui.main.home.HomeViewModel.UIState.FirstInfo
 import mraqs.water.ui.main.home.HomeViewModel.UIState.ShowInterstitial
 import mraqs.water.ui.main.home.HomeViewModel.UIState.Showcase
 import mraqs.water.util.show
@@ -33,8 +24,6 @@ import javax.inject.Inject
 class HomeActivity : BaseActivity(0) {
 
     companion object {
-        const val REQUEST_OVERLAY = 5547
-        const val REQUEST_BATTERY = 5548
         private val TAG = "HomeActivity"
     }
 
@@ -49,54 +38,19 @@ class HomeActivity : BaseActivity(0) {
         loadInterstitial()
         setupBinding()
         setupBottomNavigation()
-        setupStatusBar()
         observeUIState()
-        requestOverlayPermission()
         adView.show()
     }
 
-    @SuppressLint("MissingSuperCall")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            when (requestCode) {
-                REQUEST_OVERLAY ->
-                    if (viewModel.permissionManager.isForbiddenToDrawOverlay) {
-                        Log.d(TAG, "onActivityResult: REQUEST_OVERLAY denied")
-                    } else {
-                        viewModel.startOverlay()
-                        Log.d(TAG, "onActivityResult: REQUEST_OVERLAY granted")
-                    }
-            }
-        }
+    private fun updateUIState(state: UIState) = when (state) {
+        is FirstInfo -> showFirstInfo()
+        is Showcase -> startShowcase()
+        is ShowInterstitial -> showInterstitial()
+        is Congratulations -> showCongratulations()
     }
 
-    private fun updateUIState(state: UIState) {
-        when (state) {
-            is Showcase -> startShowcase()
-            is RequestOverlayPermission -> requestOverlayPermission()
-            is RequestBatteryPermission -> requestBatteryPermission()
-            is ShowInterstitial -> showInterstitial()
-            is Congratulations -> showCongratulations()
-        }
-    }
-
-    private fun showCongratulations() {
-        CongratsFragment.newInstance().show(supportFragmentManager, "")
-    }
-
-    @TargetApi(VERSION_CODES.M)
-    private fun requestOverlayPermission() {
-        if (viewModel.permissionManager.isForbiddenToDrawOverlay) {
-            startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")), REQUEST_OVERLAY)
-        }
-    }
-
-    @TargetApi(VERSION_CODES.M)
-    @SuppressLint("BatteryLife")
-    private fun requestBatteryPermission() {
-        if (viewModel.permissionManager.isNotIgnoreBatteryOptimization) {
-            startActivityForResult(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:$packageName")), REQUEST_BATTERY)
-        }
+    private fun showFirstInfo() {
+        FirstShowDialog().show(supportFragmentManager, "")
     }
 
     private fun startShowcase() {
@@ -116,8 +70,20 @@ class HomeActivity : BaseActivity(0) {
         }*/
     }
 
-    private fun setupStatusBar() {
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    private fun showInterstitial() {
+        if (interstitial.isLoaded) {
+            interstitial.show()
+        }
+    }
+
+    private fun loadInterstitial() {
+        interstitial = InterstitialAd(this)
+        interstitial.adUnitId = getString(R.string.admob_interstitial_id)
+        interstitial.loadAd(Builder().build())
+    }
+
+    private fun showCongratulations() {
+        CongratsFragment.newInstance().show(supportFragmentManager, "")
     }
 
     private fun setupBinding() {
@@ -129,17 +95,5 @@ class HomeActivity : BaseActivity(0) {
 
     private fun observeUIState() {
         viewModel.uiState.observe(this, Observer { updateUIState(it) })
-    }
-
-    private fun loadInterstitial() {
-        interstitial = InterstitialAd(this)
-        interstitial.adUnitId = getString(R.string.admob_interstitial_id)
-        interstitial.loadAd(Builder().build())
-    }
-
-    private fun showInterstitial() {
-        if (interstitial.isLoaded) {
-            interstitial.show()
-        }
     }
 }

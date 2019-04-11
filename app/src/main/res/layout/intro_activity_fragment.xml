@@ -8,8 +8,8 @@
 			/>
 	</data>
 <androidx.constraintlayout.widget.ConstraintLayout
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -18,31 +18,29 @@
 	>
 
 	<ImageView
-		app:layout_constraintTop_toTopOf="parent"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:adjustViewBounds="true"
 		android:src="@drawable/background"
+		app:layout_constraintTop_toTopOf="parent"
 		/>
 
     <TextView
 	    android:id="@+id/labelWeight"
-	    app:layout_constraintTop_toTopOf="parent"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginEnd="16dp"
+	    android:layout_marginStart="16dp"
 	    android:layout_marginTop="16dp"
 	    android:gravity="center"
 	    android:text="@string/how_active_are_you"
 	    android:textColor="@color/white"
 	    android:textSize="30sp"
+	    app:layout_constraintTop_toTopOf="parent"
 	    />
 	
 	<com.robinhood.ticker.TickerView
 		android:id="@+id/timeTicker"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/labelWeight"
-		app:ticker_defaultCharacterList="number"
 		android:layout_width="100dp"
 		android:layout_height="100dp"
 		android:layout_marginTop="100dp"
@@ -51,14 +49,15 @@
 		android:textColor="@color/white"
 		android:textSize="60sp"
 		android:textStyle="bold"
-		tools:text="55"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/labelWeight"
+		app:ticker_defaultCharacterList="number"
+		tools:text="2"
 		/>
 	
 	<TextView
 		android:id="@+id/btnPlus"
-		app:layout_constraintBottom_toBottomOf="@+id/timeTicker"
-		app:layout_constraintStart_toEndOf="@id/timeTicker"
-		app:layout_constraintTop_toTopOf="@id/timeTicker"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="20dp"
@@ -69,13 +68,13 @@
 		android:textColor="@color/white"
 		android:textSize="60sp"
 		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/timeTicker"
+		app:layout_constraintStart_toEndOf="@id/timeTicker"
+		app:layout_constraintTop_toTopOf="@id/timeTicker"
 		/>
 	
 	<TextView
 		android:id="@+id/btnMinus"
-		app:layout_constraintBottom_toBottomOf="@+id/timeTicker"
-		app:layout_constraintEnd_toStartOf="@id/timeTicker"
-		app:layout_constraintTop_toTopOf="@id/timeTicker"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="20dp"
@@ -85,18 +84,21 @@
 		android:textColor="@color/white"
 		android:textSize="60sp"
 		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/timeTicker"
+		app:layout_constraintEnd_toStartOf="@id/timeTicker"
+		app:layout_constraintTop_toTopOf="@id/timeTicker"
 		/>
 	
 	<TextView
-		app:layout_constraintEnd_toEndOf="@id/timeTicker"
-		app:layout_constraintStart_toStartOf="@id/timeTicker"
-		app:layout_constraintTop_toBottomOf="@id/timeTicker"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/hours_a_day"
 		android:textColor="@color/white"
 		android:textSize="16sp"
 		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="@id/timeTicker"
+		app:layout_constraintStart_toStartOf="@id/timeTicker"
+		app:layout_constraintTop_toBottomOf="@id/timeTicker"
 		/>
 	
 	<com.google.android.gms.ads.AdView
@@ -107,19 +109,14 @@
 		android:layout_margin="10dp"
 		ads:adSize="MEDIUM_RECTANGLE"
 		ads:adUnitId="@string/admob_banner_id"
+		ads:layout_constraintBottom_toTopOf="@id/btnNext"
 		ads:layout_constraintEnd_toEndOf="parent"
 		ads:layout_constraintStart_toStartOf="parent"
 		ads:layout_constraintTop_toBottomOf="@id/timeTicker"
-		ads:layout_constraintBottom_toTopOf="@id/btnNext"
 		/>
 	
 	<com.google.android.material.button.MaterialButton
 		android:id="@+id/btnNext"
-		app:backgroundTint="@color/red"
-		app:cornerRadius="100dp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="70dp"
@@ -127,6 +124,11 @@
 		android:text="@string/btn_next"
 		android:textAllCaps="false"
 		android:textSize="18sp"
+		app:backgroundTint="@color/red"
+		app:cornerRadius="100dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
 		/>
 	
 

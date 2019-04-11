@@ -20,7 +20,6 @@
 		android:id="@+id/placeholder"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:fitsSystemWindows="true"
 		tools:context=".ui.main.settings.SettingsActivity"
 		>
 		
@@ -35,35 +34,52 @@
 			app:layout_constraintTop_toTopOf="parent"
 			>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        >
-
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:gravity="center_horizontal"
-	            android:paddingTop="20dp"
-	            android:text="Settings"
-	            android:textColor="@color/white"
-	            android:textSize="22sp"
-	            android:textStyle="bold"
-	            app:layout_constraintBottom_toBottomOf="parent"
-	            />
-	        
-        </androidx.constraintlayout.widget.ConstraintLayout>
+	            >
 
-    </androidx.appcompat.widget.Toolbar>
-	
-		<androidx.cardview.widget.CardView
-			android:id="@+id/cvNotification"
+                <TextView
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center_horizontal"
+	                android:paddingTop="20dp"
+	                android:text="@string/settings_label"
+	                android:textColor="@color/white"
+	                android:textSize="22sp"
+	                android:textStyle="bold"
+	                app:layout_constraintBottom_toBottomOf="parent"
+	                />
+	        
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+		
+		<ScrollView
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			app:cardCornerRadius="10dp"
+			android:layout_height="0dp"
+			android:layout_marginBottom="64dp"
+			android:paddingBottom="10dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/toolbar"
 			>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
+	
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cvNotification"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dp"
+					app:cardCornerRadius="10dp"
+					app:layout_constraintTop_toTopOf="parent"
+					>
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -75,7 +91,7 @@
 					android:layout_gravity="end"
 					android:layout_weight="9"
 					android:gravity="center_vertical"
-					android:text="Notifications"
+					android:text="@string/notifications_label"
 					android:textColor="@color/black"
 					android:textSize="20sp"
 					android:textStyle="bold"
@@ -93,29 +109,30 @@
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
 		
-		<com.google.android.gms.ads.AdView
-			xmlns:ads="http://schemas.android.com/apk/res-auto"
-			android:id="@+id/adView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			ads:adSize="LARGE_BANNER"
-			ads:adUnitId="@string/admob_banner_id"
-			ads:layout_constraintEnd_toEndOf="parent"
-			ads:layout_constraintStart_toStartOf="parent"
-			ads:layout_constraintTop_toBottomOf="@id/cvNotification"
-			/>
+				<com.google.android.gms.ads.AdView
+					xmlns:ads="http://schemas.android.com/apk/res-auto"
+					android:id="@+id/adView"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:layout_marginTop="10dp"
+					ads:adSize="LARGE_BANNER"
+					ads:adUnitId="@string/admob_banner_id"
+					ads:layout_constraintEnd_toEndOf="parent"
+					ads:layout_constraintStart_toStartOf="parent"
+					ads:layout_constraintTop_toBottomOf="@id/cvNotification"
+					/>
 		
-		<androidx.cardview.widget.CardView
-			android:id="@+id/cvUnits"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:onClick="@{() -> viewModel.showUnitsChooser()}"
-			android:visibility="gone"
-			app:cardCornerRadius="10dp"
-			app:layout_constraintTop_toBottomOf="@id/adView"
-			>
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cvUnits"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dp"
+					android:onClick="@{() -> viewModel.showUnitsChooser()}"
+					android:visibility="gone"
+					app:cardCornerRadius="10dp"
+					app:layout_constraintTop_toBottomOf="@id/adView"
+					>
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -126,7 +143,7 @@
 					android:layout_height="match_parent"
 					android:layout_weight="1"
 					android:gravity="center_vertical"
-					android:text="Units"
+					android:text="@string/units_label"
 					android:textColor="@color/black"
 					android:textSize="20sp"
 					android:textStyle="bold"
@@ -137,7 +154,7 @@
 					android:layout_height="match_parent"
 					android:layout_weight="3"
 					android:gravity="end"
-					android:text="Metric System"
+					android:text="@string/metric_system_label"
 					android:textColor="@color/black"
 					android:textSize="20sp"
 					android:textStyle="bold"
@@ -145,14 +162,14 @@
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
 		
-		<androidx.cardview.widget.CardView
-			android:id="@+id/cvParams"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			app:cardCornerRadius="10dp"
-			app:layout_constraintTop_toBottomOf="@id/cvUnits"
-			>
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cvParams"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dp"
+					app:cardCornerRadius="10dp"
+					app:layout_constraintTop_toBottomOf="@id/cvUnits"
+					>
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -172,7 +189,7 @@
 						android:layout_height="match_parent"
 						android:layout_weight="1"
 						android:gravity="center_vertical"
-						android:text="Weight"
+						android:text="@string/weight_label"
 						android:textColor="@color/black"
 						android:textSize="20sp"
 						android:textStyle="bold"
@@ -184,7 +201,7 @@
 					android:layout_height="match_parent"
 					android:layout_weight="3"
 					android:gravity="end"
-					android:text="@{viewModel.weight.toString()}"
+					android:text="@{viewModel.weight.toString() + ` ` + @string/kg}"
 					android:textColor="@color/black"
 					android:textSize="20sp"
 					android:textStyle="bold"
@@ -206,9 +223,9 @@
 					<TextView
 						android:layout_width="0dp"
 						android:layout_height="match_parent"
-						android:layout_weight="1"
+						android:layout_weight="5"
 						android:gravity="center_vertical"
-						android:text="Activity"
+						android:text="@string/activity_label"
 						android:textColor="@color/black"
 						android:textSize="20sp"
 						android:textStyle="bold"
@@ -220,7 +237,7 @@
 					android:layout_height="match_parent"
 					android:layout_weight="3"
 					android:gravity="end"
-					android:text="@{viewModel.activity.toString() + ` hours`}"
+					android:text="@{viewModel.activity.toString() + ` ` + @string/hour}"
 					android:textColor="@color/black"
 					android:textSize="20sp"
 					android:textStyle="bold"
@@ -230,15 +247,15 @@
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
 		
-		<androidx.cardview.widget.CardView
-			android:id="@+id/cvVolume"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:onClick="@{() -> viewModel.showVolumeChooser()}"
-			app:cardCornerRadius="10dp"
-			app:layout_constraintTop_toBottomOf="@id/cvParams"
-			>
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cvInterval"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dp"
+					android:onClick="@{() -> viewModel.showIntervalChooser()}"
+					app:cardCornerRadius="10dp"
+					app:layout_constraintTop_toBottomOf="@id/cvParams"
+					>
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -249,7 +266,45 @@
 					android:layout_height="match_parent"
 					android:layout_weight="5"
 					android:gravity="center_vertical"
-					android:text="Capacity of glass"
+					android:text="@string/interval_label"
+					android:textColor="@color/black"
+					android:textSize="20sp"
+					android:textStyle="bold"
+					/>
+			
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="2"
+					android:gravity="end"
+					android:text="@{viewModel.interval + ` ` + viewModel.timeUnit}"
+					android:textColor="@color/black"
+					android:textSize="20sp"
+					android:textStyle="bold"
+					/>
+			</LinearLayout>
+		</androidx.cardview.widget.CardView>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cvVolume"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dp"
+					android:onClick="@{() -> viewModel.showVolumeChooser()}"
+					app:cardCornerRadius="10dp"
+					app:layout_constraintTop_toBottomOf="@id/cvParams"
+					>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_margin="20dp"
+				>
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="5"
+					android:gravity="center_vertical"
+					android:text="@string/capacity_of_glass_label"
 					android:textColor="@color/black"
 					android:textSize="20sp"
 					android:textStyle="bold"
@@ -267,8 +322,63 @@
 					/>
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cvInfos"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dp"
+					app:cardCornerRadius="10dp"
+					app:layout_constraintTop_toBottomOf="@id/cvVolume"
+					>
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_margin="20dp"
+						android:orientation="vertical"
+						>
+				
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginBottom="10dp"
+							android:gravity="center_vertical"
+							android:onClick="@{() -> viewModel.showPrivacyPolicy()}"
+							android:text="@string/privacy_policy"
+							android:textColor="@color/black"
+							android:textSize="20sp"
+							android:textStyle="bold"
+							/>
+			
+				
+						<TextView
+							android:layout_width="match_parent"
+							android:layout_height="2dp"
+							android:background="#F5F5F5"
+							/>
+						
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:gravity="center_vertical"
+							android:onClick="@{() -> viewModel.showTermsOfUse()}"
+							android:text="@string/terms_of_use"
+							android:textColor="@color/black"
+							android:textSize="20sp"
+							android:textStyle="bold"
+							/>
+					</LinearLayout>
+				</androidx.cardview.widget.CardView>
+				
+			</LinearLayout>
+			
+	</ScrollView>
 	
-	<include layout="@layout/bottom_navigation_view" />
+	<include
+		android:id="@+id/bottomNav"
+		layout="@layout/bottom_navigation_view"
+		/>
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 	</layout>

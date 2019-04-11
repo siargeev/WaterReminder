@@ -7,17 +7,22 @@ import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.Button
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest
 import com.google.android.gms.ads.doubleclick.PublisherAdView
+import com.google.android.material.button.MaterialButton
 import mraqs.water.R
 import mraqs.water.ui.main.home.HomeActivity
 
 class Overlay : JobService() {
+
+    private val TAG = "Overlay"
 
     override fun onStartJob(param: JobParameters?): Boolean {
 
@@ -26,7 +31,7 @@ class Overlay : JobService() {
 
         val type = if (VERSION.SDK_INT >= VERSION_CODES.O)
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        else WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG
+        else WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
 
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -37,7 +42,7 @@ class Overlay : JobService() {
         )
         params.gravity = Gravity.CENTER
 
-        val view = inflater.inflate(R.layout.overlay, null) as ConstraintLayout
+        val view = inflater.inflate(R.layout.overlay, null) as CardView
         val btnClose = view.findViewById<Button>(R.id.btn_later)
         val btnDrink = view.findViewById<Button>(R.id.btn_drink)
 
@@ -55,12 +60,12 @@ class Overlay : JobService() {
             stopService(Intent(applicationContext, Overlay::class.java))
 
             val intent = Intent(applicationContext, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-//            val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-
         }
 
         windowManager.addView(view, params)
+        Log.d(TAG, "onStartJob: Overlay drawed")
         return true
     }
 

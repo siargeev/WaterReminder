@@ -5,12 +5,12 @@
     <item
 	    android:id="@+id/nav_item_home"
 	    android:icon="@drawable/ic_drop_selector"
-	    android:title="Main"
+	    android:title="@string/nav_item_main"
 	    />
 	
 	<item
 		android:id="@+id/nav_item_settings"
 		android:icon="@drawable/ic_settings_selector"
-		android:title="Settings"
+		android:title="@string/nav_item_settings"
 		/>
 </menu>

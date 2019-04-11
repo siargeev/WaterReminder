@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<data>
+		<import type="android.view.View" />
+		<variable
+			name="viewModel"
+			type="mraqs.water.ui.interval.IntervalViewModel"
+			/>
+	</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	tools:context=".ui.weight.WeightFragment"
+	>
+	
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:adjustViewBounds="true"
+		android:src="@drawable/background"
+		app:layout_constraintTop_toTopOf="parent"
+		/>
+
+    <TextView
+	    android:id="@+id/labelInterval"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="16dp"
+	    android:gravity="center"
+	    android:text="@string/label_interval"
+	    android:textColor="@color/white"
+	    android:textSize="30sp"
+	    app:layout_constraintTop_toTopOf="parent"
+	    />
+	
+	<cn.carbswang.android.numberpickerview.library.NumberPickerView
+		android:id="@+id/pickerInterval"
+		style="@style/Picker"
+		android:layout_width="85dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/labelInterval"
+		/>
+	
+	<com.robinhood.ticker.TickerView
+		android:id="@+id/tickerTimeUnit"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/min"
+		android:textColor="@color/white"
+		android:textSize="30sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@id/pickerInterval"
+		app:layout_constraintStart_toEndOf="@id/pickerInterval"
+		app:layout_constraintTop_toTopOf="@id/pickerInterval"
+		app:ticker_defaultCharacterList="alphabet"
+		/>
+
+	
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btnSave"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="70dp"
+		android:onClick="@{() -> viewModel.onSaveClick()}"
+		android:text="@string/save_button"
+		android:textAllCaps="false"
+		android:textSize="18sp"
+		app:backgroundTint="@color/red"
+		app:cornerRadius="100dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		/>
+	
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+	</layout>

@@ -11,11 +11,10 @@ import javax.inject.Inject
 open class BaseActivity @Inject constructor(private val navItem: Int) : DaggerAppCompatActivity() {
 
     fun setupBottomNavigation() {
-
         with(bottom_navigation_view) {
             menu.getItem(navItem).isChecked = true
-            setIconSize(30f, 30f)
-            setTextVisibility(false)
+//            setIconSize(30f, 30f)
+            setTextVisibility(true)
             isItemHorizontalTranslationEnabled = false
             labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
             enableAnimation(false)

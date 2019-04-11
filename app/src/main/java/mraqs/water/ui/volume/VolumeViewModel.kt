@@ -53,11 +53,11 @@ class VolumeViewModel @Inject constructor(private val prefs: LivePreferenceManag
         selectBottle()
     }
 
-    fun selectSmallGlass() = uiState.postValue(OnSmallGlassClick)
-    fun selectCup() = uiState.postValue(OnCupClick)
-    fun selectGlass() = uiState.postValue(OnGlassClick)
-    fun selectSmallBottle() = uiState.postValue(OnSmallBottleClick)
-    fun selectBottle() = uiState.postValue(OnBottleClick)
+    private fun selectSmallGlass() = uiState.postValue(OnSmallGlassClick)
+    private fun selectCup() = uiState.postValue(OnCupClick)
+    private fun selectGlass() = uiState.postValue(OnGlassClick)
+    private fun selectSmallBottle() = uiState.postValue(OnSmallBottleClick)
+    private fun selectBottle() = uiState.postValue(OnBottleClick)
     fun onSaveClick() = uiState.postValue(OnSaveClick)
 
     sealed class UIState {

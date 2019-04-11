@@ -5,63 +5,52 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mraqs.water.manager.LivePreferenceManager
 import mraqs.water.manager.LivePreferenceManager.Companion.toGender
-import mraqs.water.manager.PermissionManager
 import mraqs.water.manager.ReminderManager
 import mraqs.water.util.WaterAmount
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    internal val prefs: LivePreferenceManager,
-    internal val permissionManager: PermissionManager,
-    internal val reminderManager: ReminderManager
+    private val prefs: LivePreferenceManager,
+    private val reminderManager: ReminderManager
 ) : ViewModel() {
 
-    private val TAG = "HomeViewModel"
+    companion object {
+        private const val TAG = "HomeViewModel"
+        private const val INTERSTITIAL_SHOWING_INTERVAL = 3
+    }
+
     val uiState = MutableLiveData<UIState>()
     val goal = ObservableField(prefs.loadGoal().value!!)
     val progress = ObservableField(prefs.loadProgress().value!!)
     val volume = ObservableField(prefs.loadVolume().value!!)
 
     init {
+        observePreferences()
+        setupReminder()
+        showFirstInfo()
+        prefs.registerFirstLaunch()
+    }
+
+    private fun showFirstInfo() {
+        if (prefs.isFirstLaunch())
+            setStateToFirstInfo()
+    }
+
+    private fun observePreferences() {
         prefs.loadGoal().observeForever { goal.set(it) }
         prefs.loadProgress().observeForever { progress.set(it); checkForGoalReaching() }
         prefs.loadVolume().observeForever { volume.set(it) }
         prefs.loadWeight().observeForever { updateGoal() }
         prefs.loadActivityTime().observeForever { updateGoal() }
-        startNotificationReminder()
-        startOverlayReminder()
-        removeNotification()
     }
 
-    private fun startOverlayReminder() {
-//        if (permissionManager.isNotIgnoreBatteryOptimization) requestBatteryPermission()
-        if (permissionManager.isForbiddenToDrawOverlay) {
-            requestOverlayPermission()
-        } else {
-            if (prefs.isNotificationsEnabled()) {
-                startOverlay()
-            }
-        }
-    }
-
-    fun startOverlay() {
-        if (prefs.isNotificationsEnabled()) {
-            reminderManager.startOverlayReminder()
-        }
-    }
-
-    private fun startNotificationReminder() {
-        if (prefs.isNotificationsEnabled()) {
-            reminderManager.startNotificationReminder()
-        }
-    }
-
-    private fun removeNotification() {
+    private fun setupReminder() {
+        reminderManager.startReminders()
         reminderManager.deleteNotification()
     }
 
     private fun checkForGoalReaching() {
-        if (isGoalReached()) {
+        if (isGoalReached() && prefs.loadGoal().value!! != 0) {
             registerGoalReaching()
             showCongrats()
         }
@@ -79,12 +68,12 @@ class HomeViewModel @Inject constructor(
     fun onDrinkClick() {
         updateProgress()
         prefs.addDrunkGlass()
-        checkForTimeTo { showInterstitial() }
+        checkForTimeToShowInterstitial()
     }
 
-    private fun checkForTimeTo(block: () -> Unit) {
-        if (prefs.getDrunkGlasses().rem(3) == 0)
-            block()
+    private fun checkForTimeToShowInterstitial() {
+        if (prefs.getDrunkGlasses().rem(INTERSTITIAL_SHOWING_INTERVAL) == 0)
+            showInterstitial()
     }
 
     private fun updateGoal() {
@@ -106,16 +95,14 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun showCongrats() = uiState.postValue(UIState.Congratulations)
-    fun showShowcase() = uiState.postValue(UIState.Showcase)
-    fun requestOverlayPermission() = uiState.postValue(UIState.RequestOverlayPermission)
-    fun requestBatteryPermission() = uiState.postValue(UIState.RequestBatteryPermission)
-    fun showInterstitial() = uiState.postValue(UIState.ShowInterstitial)
+    private fun showShowcase() = uiState.postValue(UIState.Showcase)
+    private fun showInterstitial() = uiState.postValue(UIState.ShowInterstitial)
+    private fun setStateToFirstInfo() = uiState.postValue(UIState.FirstInfo)
 
     sealed class UIState {
         object Showcase : UIState()
-        object RequestOverlayPermission : UIState()
-        object RequestBatteryPermission : UIState()
         object ShowInterstitial : UIState()
         object Congratulations : UIState()
+        object FirstInfo : UIState()
     }
 }
