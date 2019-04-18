@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="google_app_id" translatable="false">ca-app-pub-8296079977889768~9363046368</string>
+    <string name="admob_interstitial_id" translatable="false">ca-app-pub-8296079977889768/2195002785</string>
+    <string name="admob_banner_id" translatable="false">ca-app-pub-8296079977889768/5204309508</string>
+    <string name="yandex_metrica_id" translatable="false">2f0a166a-dbc5-47cf-b9bc-17a6e8281837</string>
+    <string name="facebook_app_id" translatable="false">356040631787717</string>
+</resources>

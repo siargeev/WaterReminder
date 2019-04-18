@@ -18,7 +18,7 @@ class OverlayWorker(private val context: Context, params: WorkerParameters) : Wo
     }
 
     override fun doWork(): Result {
-        if (App.appInBackground.value!! && NetManager(context).isConnectedToInternet)
+        if (App.appInBackground.value!! && !NetManager(context).isConnectedToInternet)
             showOverlay()
         Log.d(TAG, "doWork: Overlay Work Complete")
         return Result.success()
@@ -28,6 +28,7 @@ class OverlayWorker(private val context: Context, params: WorkerParameters) : Wo
         val jobScheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         val job = JobInfo.Builder(OVERLAY_JOB_ID, ComponentName(context, Overlay::class.java))
             .setOverrideDeadline(0)
+            .setRequiresDeviceIdle(true)
             .build()
         jobScheduler.schedule(job)
     }
