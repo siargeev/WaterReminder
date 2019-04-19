@@ -39,6 +39,10 @@ class HomeActivity : BaseActivity(0) {
         setupBinding()
         setupBottomNavigation()
         observeUIState()
+    }
+
+    override fun onResume() {
+        super.onResume()
         adView.show()
     }
 
