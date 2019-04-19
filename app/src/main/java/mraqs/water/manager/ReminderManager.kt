@@ -1,6 +1,7 @@
 package mraqs.water.manager
 
 import android.app.NotificationManager
+import android.app.job.JobScheduler
 import android.content.Context
 import android.util.Log
 import androidx.work.ExistingPeriodicWorkPolicy.KEEP
@@ -61,6 +62,7 @@ class ReminderManager @Inject constructor(private var applicationContext: Contex
 
     private fun startOverlayReminder() {
         prefs.enableOverlayReminder()
+        deleteOverlay()
         val reminderInterval = prefs.loadReminderInterval().value!!.toLong()
         val overlayRequest = PeriodicWorkRequest
             .Builder(OverlayWorker::class.java, reminderInterval, TimeUnit.MINUTES, reminderInterval - 1, MINUTES)
@@ -72,7 +74,7 @@ class ReminderManager @Inject constructor(private var applicationContext: Contex
     }
 
     private fun updateOverlayReminderInterval() {
-
+        deleteOverlay()
         val newInterval = prefs.loadReminderInterval().value!!.toLong()
         val newOverlayRequest = PeriodicWorkRequest
             .Builder(OverlayWorker::class.java, newInterval, MINUTES, newInterval - 1, MINUTES)
@@ -98,6 +100,11 @@ class ReminderManager @Inject constructor(private var applicationContext: Contex
         prefs.disableOverlayReminder()
         Log.d(TAG, "cancelOverlayReminder")
         WorkManager.getInstance().cancelAllWorkByTag(OVERLAY_WORK)
+    }
+
+    fun deleteOverlay() {
+        val jobScheduler = applicationContext.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        jobScheduler.cancel(OverlayWorker.OVERLAY_JOB_ID)
     }
 
     fun deleteNotification() {

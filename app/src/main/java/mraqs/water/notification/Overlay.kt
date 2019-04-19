@@ -10,23 +10,25 @@ import android.os.Build.VERSION_CODES
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest
 import com.google.android.gms.ads.doubleclick.PublisherAdView
-import com.google.android.material.button.MaterialButton
 import mraqs.water.R
 import mraqs.water.ui.main.home.HomeActivity
 
 class Overlay : JobService() {
 
     private val TAG = "Overlay"
+    private lateinit var windowManager: WindowManager
+    private lateinit var view: View
 
     override fun onStartJob(param: JobParameters?): Boolean {
 
-        val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         val type = if (VERSION.SDK_INT >= VERSION_CODES.O)
@@ -42,7 +44,7 @@ class Overlay : JobService() {
         )
         params.gravity = Gravity.CENTER
 
-        val view = inflater.inflate(R.layout.overlay, null) as CardView
+        view = inflater.inflate(R.layout.overlay, null) as CardView
         val btnClose = view.findViewById<Button>(R.id.btn_later)
         val btnDrink = view.findViewById<Button>(R.id.btn_drink)
 
@@ -63,13 +65,20 @@ class Overlay : JobService() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
-
-        windowManager.addView(view, params)
+        if (ViewCompat.isAttachedToWindow(view)) {
+            windowManager.removeView(view)
+        } else {
+            windowManager.addView(view, params)
+        }
         Log.d(TAG, "onStartJob: Overlay drawed")
         return true
     }
 
     override fun onStopJob(params: JobParameters?): Boolean {
+        if (ViewCompat.isAttachedToWindow(view)) {
+            windowManager.removeView(view)
+        }
+        stopService(Intent(applicationContext, Overlay::class.java))
         return true
     }
 }
