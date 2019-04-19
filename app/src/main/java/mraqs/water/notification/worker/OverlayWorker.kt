@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import mraqs.water.App
+import mraqs.water.manager.CallManager
 import mraqs.water.manager.NetManager
 import mraqs.water.notification.Overlay
 
@@ -18,7 +19,7 @@ class OverlayWorker(private val context: Context, params: WorkerParameters) : Wo
     }
 
     override fun doWork(): Result {
-        if (App.appInBackground.value!! && !NetManager(context).isConnectedToInternet)
+        if (App.appInBackground.value!! && !NetManager(context).isConnectedToInternet && !CallManager(context).nowCalling)
             showOverlay()
         Log.d(TAG, "doWork: Overlay Work Complete")
         return Result.success()
